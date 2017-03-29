@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="nl.hu.fed.actortemplateapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".ShowProjects"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".SignInActivity" />
+
+        <activity
+            android:name=".ShowProjectContent"
+            android:label="Project detail"
+            android:parentActivityName=".ShowProjects"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.hu.fed.actortemplateapp.ShowProjects" />
+        </activity>
+
+        <activity
+            android:name=".CreateProject"
+            android:label="New Project"
+            android:parentActivityName=".ShowProjects"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.hu.fed.actortemplateapp.ShowProjects" />
+        </activity>
+
+        <activity
+            android:name=".CreateActor"
+            android:label="New Actor"
+            android:parentActivityName=".ShowProjectContent"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.hu.fed.actortemplateapp.ShowProjectContent" />
+        </activity>
+
+        <activity
+            android:name=".BaseActivity"
+            android:label="@string/title_activity_base"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".ShowActorContent"
+            android:label="Actor detail"
+            android:parentActivityName=".ShowProjectContent"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.hu.fed.actortemplateapp.ShowProjectContent" />
+        </activity>
+
+        <activity
+            android:name=".ShowPersonContent"
+            android:label="Person detail"
+            android:parentActivityName=".ShowActorContent"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.hu.fed.actortemplateapp.ShowActorContent" />
+        </activity>
+
+        <activity
+            android:name=".CreatePerson"
+            android:label="New Person"
+            android:parentActivityName=".ShowActorContent"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.hu.fed.actortemplateapp.ShowActorContent" />
+        </activity>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Actor Template App</string>
+    <string name="sign_in">Sign In</string>
+    <string name="action_settings">Settings</string>
+    <string name="sign_out">Sign Out</string>
+
+    <!-- pages !-->
+    <string name="all_projects">Projects</string>
+    <string name="add_project">New projects</string>
+    <string name="all_actors">Actors</string>
+    <string name="add_actor">New actor</string>
+    <string name="all_persons">Persons</string>
+    <string name="add_person">New person</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+
+</resources>

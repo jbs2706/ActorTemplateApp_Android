@@ -1,0 +1,107 @@
+{
+  "project_info": {
+    "project_number": "170747228463",
+    "firebase_url": "https://actortemplateapp-a1921.firebaseio.com",
+    "project_id": "actortemplateapp-a1921",
+    "storage_bucket": "actortemplateapp-a1921.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170747228463:android:22bdb5307ecf8db1",
+        "android_client_info": {
+          "package_name": "nl.hu.fed.actortemplateapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170747228463-a1gq0gurshiioagnsvp384b7rr91clvp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nl.hu.fed.actortemplateapp",
+            "certificate_hash": "0f1e899e2f166c9828477372a1d680db7696d9a8"
+          }
+        },
+        {
+          "client_id": "170747228463-cva7u9ntb6bhrvmigcjo4atcp6t4a1se.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nl.hu.fed.actortemplateapp",
+            "certificate_hash": "936c91b331c4983c32f095976d06cf8ceab18131"
+          }
+        },
+        {
+          "client_id": "170747228463-lmb1bmdeecms51tmfu1d96regtobe7g7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlWHa64WhM3iuvzzjxuQoxu5vz4d5MhqE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170747228463-lmb1bmdeecms51tmfu1d96regtobe7g7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170747228463:android:e9d235b5c14d1b19",
+        "android_client_info": {
+          "package_name": "nl.hu.diarieswithfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170747228463-5j70gf0oh4urd8fjp0mj1cpu5aid3cuk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nl.hu.diarieswithfirebase",
+            "certificate_hash": "936c91b331c4983c32f095976d06cf8ceab18131"
+          }
+        },
+        {
+          "client_id": "170747228463-lmb1bmdeecms51tmfu1d96regtobe7g7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlWHa64WhM3iuvzzjxuQoxu5vz4d5MhqE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170747228463-lmb1bmdeecms51tmfu1d96regtobe7g7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

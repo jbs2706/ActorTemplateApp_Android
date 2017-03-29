@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="60dp"
+    android:orientation="vertical" >
+
+    <TextView android:text="Full name"
+        android:id="@+id/textViewFullName"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+       >
+    </TextView>
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/editTextName"
+        android:hint="enter full name">
+    </EditText>
+
+    <TextView
+        android:text="Email"
+        android:id="@+id/textViewEmail"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        >
+    </TextView>
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter email address">
+    </EditText>
+
+    <TextView
+        android:text="Function"
+        android:id="@+id/textViewFunction"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        >
+    </TextView>
+    <EditText
+        android:id="@+id/editTextFunction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter the persons function">
+    </EditText>
+
+    <TextView
+        android:text="Phonenumber"
+        android:id="@+id/textViewPhonenumber"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        >
+    </TextView>
+    <EditText
+        android:id="@+id/editTextPhonenumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="enter phone number">
+    </EditText>
+
+    <TextView
+        android:text="Notes"
+        android:id="@+id/textViewNotes"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        >
+    </TextView>
+    <EditText
+        android:id="@+id/editTextNotes"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="top"
+        android:inputType="none"
+        android:hint="enter relevant notes">
+    </EditText>
+
+    <TextView
+        android:text="Photo"
+        android:id="@+id/textViewPhoto"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        >
+    </TextView>
+    <EditText
+        android:id="@+id/editTextPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter photo placeholder">
+    </EditText>
+
+
+</LinearLayout>

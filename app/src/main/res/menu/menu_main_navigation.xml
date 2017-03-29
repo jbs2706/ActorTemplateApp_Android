@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="Account"
+        android:id="@+id/account"
+        app:showAsAction="always"
+        android:icon="@drawable/account" />
+
+    <item android:id="@+id/all_projects"
+        android:title="@string/all_projects" >
+    </item>
+    <item android:id="@+id/add_project"
+        android:title="@string/add_project" >
+    </item>
+    <item android:id="@+id/all_actors"
+        android:title="@string/all_actors" >
+    </item>
+    <item android:id="@+id/add_actor"
+        android:title="@string/add_actor" >
+    </item>
+    <item android:id="@+id/all_persons"
+        android:title="@string/all_persons" >
+    </item>
+    <item android:id="@+id/add_person"
+        android:title="@string/add_person" >
+    </item>
+</menu>
