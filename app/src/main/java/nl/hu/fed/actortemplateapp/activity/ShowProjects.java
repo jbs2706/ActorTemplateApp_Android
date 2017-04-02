@@ -1,6 +1,7 @@
 package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,7 +40,8 @@ public class ShowProjects extends BaseActivity {
 		//add a OnItemClickListener
 		recyclerView = (RecyclerView) findViewById(R.id.recycler_view_projects);
 
-		mAdapter = new ProjectsAdapter();
+		SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+		mAdapter = new ProjectsAdapter(userInfo.getString("userId", "NotSignedIn"));
 		RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
 		recyclerView.setLayoutManager(mLayoutManager);
 		recyclerView.setItemAnimator(new DefaultItemAnimator());

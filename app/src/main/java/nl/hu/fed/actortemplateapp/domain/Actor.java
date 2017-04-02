@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public class Actor {
-    private String rolename, taskdescription, projectKey;
+    private String rolename, taskdescription, projectKey, analist;
     private boolean archived;
     public String key;
 
@@ -41,5 +41,13 @@ public class Actor {
 
     public String getProjectKey() {
         return projectKey;
+    }
+
+    public String getAnalist() {
+        return analist;
+    }
+
+    public void setAnalist(String analist) {
+        this.analist = analist;
     }
 }

@@ -1,5 +1,6 @@
 package nl.hu.fed.actortemplateapp.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -48,6 +49,9 @@ public class CreateProject extends AppCompatActivity {
             Project project = new Project();
             project.setTitle(titleET.getText().toString());
             project.setDescription(descriptionET.getText().toString());
+
+            SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+            project.setAnalist(userInfo.getString("userId", "NotSignedIn"));
 
             DatabaseReference mDatabase =  FirebaseDatabase.getInstance().getReference();
             mDatabase.child("projects").push().setValue(project);

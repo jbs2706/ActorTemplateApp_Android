@@ -2,6 +2,7 @@ package nl.hu.fed.actortemplateapp.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -129,7 +130,10 @@ public class CreatePerson extends AppCompatActivity {
             }
 
             Intent intent = getIntent();
-            person.setActorkey(intent.getStringExtra("key"));
+            person.setActorKey(intent.getStringExtra("key"));
+
+            SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+            person.setAnalist(userInfo.getString("userId", "NotSignedIn"));
 
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
             mDatabase.child("persons").push().setValue(person);

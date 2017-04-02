@@ -6,7 +6,7 @@ import nl.hu.fed.actortemplateapp.domain.Actor;
 
 public class Project {
 
-    private String title, description;
+    private String title, description, analist;
     private boolean archived;
     public String key;
 
@@ -32,5 +32,13 @@ public class Project {
 
     public void setArchived(boolean archived) {
         this.archived = archived;
+    }
+
+    public String getAnalist() {
+        return analist;
+    }
+
+    public void setAnalist(String analist) {
+        this.analist = analist;
     }
 }

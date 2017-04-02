@@ -64,7 +64,7 @@ public class PersonsAdapter extends RecyclerView.Adapter<PersonsAdapter.MyViewHo
                 Person person = dataSnapshot.getValue(Person.class);
                 person.key = dataSnapshot.getKey();
 
-                if(person.getActorkey().equals(actorKey) && !person.isArchived()) {
+                if(person.getActorKey().equals(actorKey) && !person.isArchived()) {
                     personList.add(person);
                 }
 

@@ -1,6 +1,7 @@
 package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,7 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,14 +29,10 @@ import nl.hu.fed.actortemplateapp.adapters.ActorsAdapter;
 import nl.hu.fed.actortemplateapp.domain.Project;
 
 public class ShowProjectContent extends AppCompatActivity {
-    String key;
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-
-    private String TAG = "ShowActors";
+    private String key, analist, TAG = "ShowActors";
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private RecyclerView recyclerView;
     private ActorsAdapter mAdapter;
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +42,16 @@ public class ShowProjectContent extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        final Button newActor = (Button) findViewById(R.id.button_new_actor);
+        newActor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ShowProjectContent.this, CreateActor.class);
+                i.putExtra("key", key);
+                startActivity(i);
+            }
+        });
+
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -51,16 +60,25 @@ public class ShowProjectContent extends AppCompatActivity {
 
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        TextView tv1 = (TextView)findViewById(R.id.titleView);
-                        TextView tv2 = (TextView) findViewById(R.id.descriptionView);
+                        EditText titleET = (EditText)findViewById(R.id.titleView);
+                        EditText descriptionET = (EditText) findViewById(R.id.descriptionView);
 
                         Project project = dataSnapshot.getValue(Project.class);
 
                         String title = project.getTitle();
-                        tv1.setText(title);
+                        titleET.setText(title);
 
                         String content = project.getDescription();
-                        tv2.setText(content);
+                        descriptionET.setText(content);
+
+                        analist = project.getAnalist();
+
+                        SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+                        if(!analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+                            titleET.setKeyListener(null);
+                            descriptionET.setKeyListener(null);
+                            newActor.setVisibility(View.INVISIBLE);
+                        }
                     }
 
                     @Override
@@ -78,16 +96,6 @@ public class ShowProjectContent extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
-
-        Button newActor = (Button) findViewById(R.id.button_new_actor);
-        newActor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(ShowProjectContent.this, CreateActor.class );
-                i.putExtra("key", key);
-                startActivity(i);
-            }
-        });
     }
 
     @Override
@@ -104,17 +112,33 @@ public class ShowProjectContent extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.archiveItem) {
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("projects").child(key).child("archived").setValue(true);
-            finish();
-            return true;
-        }
-        if (id == R.id.deleteItem) {
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("projects").child(key).removeValue();
-            finish();
-            return true;
+        SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+        if(analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+            if (id == R.id.editItem) {
+                EditText titleET = (EditText) findViewById(R.id.titleView);
+                EditText descriptionET = (EditText) findViewById(R.id.descriptionView);
+
+                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("projects").child(key).child("title").setValue(titleET.getText().toString());
+                mDatabase.child("projects").child(key).child("description").setValue(descriptionET.getText().toString());
+
+                finish();
+                return true;
+            }
+            if (id == R.id.archiveItem) {
+                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("projects").child(key).child("archived").setValue(true);
+                finish();
+                return true;
+            }
+            if (id == R.id.deleteItem) {
+                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("projects").child(key).removeValue();
+                finish();
+                return true;
+            }
+        } else{
+            Toast.makeText(this, this.getString(R.string.analistAction), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

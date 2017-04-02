@@ -1,16 +1,20 @@
 package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,9 +27,9 @@ import nl.hu.fed.actortemplateapp.cameraMethods.CameraFunctions;
 import nl.hu.fed.actortemplateapp.domain.Person;
 
 public class ShowPersonContent extends AppCompatActivity {
-    String key;
+    private String key, analist;
     private CameraFunctions cameraFunctions = new CameraFunctions();
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +46,11 @@ public class ShowPersonContent extends AppCompatActivity {
 
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        TextView nameField = (TextView)findViewById(R.id.nameView);
-                        TextView emailField = (TextView) findViewById(R.id.emailView);
-                        TextView functionField = (TextView) findViewById(R.id.functionView);
-                        TextView phonenumberField = (TextView) findViewById(R.id.phonenumberView);
-                        TextView notesField = (TextView) findViewById(R.id.notesView);
+                        EditText nameField = (EditText)findViewById(R.id.nameView);
+                        EditText emailField = (EditText) findViewById(R.id.emailView);
+                        EditText functionField = (EditText) findViewById(R.id.functionView);
+                        EditText phonenumberField = (EditText) findViewById(R.id.phonenumberView);
+                        EditText notesField = (EditText) findViewById(R.id.notesView);
                         ImageView photoField = (ImageView) findViewById(R.id.photoView);
 
                         Person person = dataSnapshot.getValue(Person.class);
@@ -68,6 +72,16 @@ public class ShowPersonContent extends AppCompatActivity {
 
                         photoField.setImageBitmap(cameraFunctions.fromStringToImage(person.getPhoto()));
 
+                        analist = person.getAnalist();
+
+                        SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+                        if(!analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+                            nameField.setKeyListener(null);
+                            emailField.setKeyListener(null);
+                            functionField.setKeyListener(null);
+                            phonenumberField.setKeyListener(null);
+                            notesField.setKeyListener(null);
+                        }
                     }
 
                     @Override
@@ -76,7 +90,6 @@ public class ShowPersonContent extends AppCompatActivity {
                     }
                 }
         );
-
     }
 
     @Override
@@ -93,18 +106,41 @@ public class ShowPersonContent extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+        if(analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+            if (id == R.id.editItem) {
+                EditText nameField = (EditText) findViewById(R.id.nameView);
+                EditText emailField = (EditText) findViewById(R.id.emailView);
+                EditText functionField = (EditText) findViewById(R.id.functionView);
+                EditText phonenumberField = (EditText) findViewById(R.id.phonenumberView);
+                EditText notesField = (EditText) findViewById(R.id.notesView);
+                ImageView photoField = (ImageView) findViewById(R.id.photoView);
 
-        if (id == R.id.archiveItem) {
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("persons").child(key).child("archived").setValue(true);
-            finish();
-            return true;
-        }
-        if (id == R.id.deleteItem) {
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("persons").child(key).removeValue();
-            finish();
-            return true;
+                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("persons").child(key).child("name").setValue(nameField.getText().toString());
+                mDatabase.child("persons").child(key).child("email").setValue(emailField.getText().toString());
+                mDatabase.child("persons").child(key).child("function").setValue(functionField.getText().toString());
+                mDatabase.child("persons").child(key).child("phonenumber").setValue(phonenumberField.getText().toString());
+                mDatabase.child("persons").child(key).child("notes").setValue(notesField.getText().toString());
+                mDatabase.child("persons").child(key).child("photo").setValue(cameraFunctions.fromImageToString((BitmapDrawable) photoField.getDrawable()));
+
+                finish();
+                return true;
+            }
+            if (id == R.id.archiveItem) {
+                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("persons").child(key).child("archived").setValue(true);
+                finish();
+                return true;
+            }
+            if (id == R.id.deleteItem) {
+                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("persons").child(key).removeValue();
+                finish();
+                return true;
+            }
+        } else{
+            Toast.makeText(this, this.getString(R.string.analistAction), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -12,16 +12,13 @@
     <item android:id="@+id/add_project"
         android:title="@string/add_project" >
     </item>
-    <item android:id="@+id/all_actors"
-        android:title="@string/all_actors" >
+    <item android:id="@+id/archive"
+        android:title="@string/archive" >
     </item>
-    <item android:id="@+id/add_actor"
-        android:title="@string/add_actor" >
+    <item android:id="@+id/sign_out"
+        android:title="@string/sign_out" >
     </item>
-    <item android:id="@+id/all_persons"
-        android:title="@string/all_persons" >
-    </item>
-    <item android:id="@+id/add_person"
-        android:title="@string/add_person" >
+    <item android:id="@+id/settings"
+        android:title="@string/action_settings" >
     </item>
 </menu>

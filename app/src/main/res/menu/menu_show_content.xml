@@ -4,7 +4,7 @@
 
     <item android:title="edit"
         android:icon="@drawable/edit"
-        android:id="@+id/editiItem"
+        android:id="@+id/editItem"
         app:showAsAction="always" />
 
     <item android:title="archive"

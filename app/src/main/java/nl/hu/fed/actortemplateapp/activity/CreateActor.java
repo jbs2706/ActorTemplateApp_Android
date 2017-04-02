@@ -1,6 +1,7 @@
 package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -51,6 +52,9 @@ public class CreateActor extends AppCompatActivity {
             actor.setTaskdescription(descriptionET.getText().toString());
             Intent intent = getIntent();
             actor.setProjectKey(intent.getStringExtra("key"));
+
+            SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+            actor.setAnalist(userInfo.getString("userId", "NotSignedIn"));
 
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
             mDatabase.child("actors").push().setValue(actor);

@@ -78,21 +78,23 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
             case R.id.all_projects:
                 startActivity(new Intent(this, ShowProjects.class));
                 return true;
+
             case R.id.add_project:
                 startActivity(new Intent(this, CreateProject.class));
                 return true;
 
-            case R.id.all_actors:
-                //startActivity(new Intent(this, SignInActivity.class));
-                return true;
-            case R.id.add_actor:
+            case R.id.archive:
                 //startActivity(new Intent(this, SignInActivity.class));
                 return true;
 
-            case R.id.all_persons:
-                //startActivity(new Intent(this, SignInActivity.class));
+            case R.id.sign_out:
+                mFirebaseAuth.signOut();
+                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+                mUsername = ANONYMOUS;
+                startActivity(new Intent(this, SignInActivity.class));
                 return true;
-            case R.id.add_person:
+
+            case R.id.settings:
                 //startActivity(new Intent(this, SignInActivity.class));
                 return true;
 

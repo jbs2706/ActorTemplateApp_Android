@@ -1,6 +1,7 @@
 package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,7 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,10 +27,8 @@ import nl.hu.fed.actortemplateapp.adapters.PersonsAdapter;
 import nl.hu.fed.actortemplateapp.domain.Actor;
 
 public class ShowActorContent extends AppCompatActivity {
-    String key;
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-
-    private String TAG = "ShowPersons";
+    private String key, analist, TAG = "ShowPersons";
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private RecyclerView recyclerView;
     private PersonsAdapter mAdapter;
 
@@ -38,6 +39,16 @@ public class ShowActorContent extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final Button newPerson = (Button) findViewById(R.id.button_new_person);
+        newPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ShowActorContent.this, CreatePerson.class);
+                i.putExtra("key", key);
+                startActivity(i);
+            }
+        });
+
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -46,16 +57,25 @@ public class ShowActorContent extends AppCompatActivity {
 
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        TextView tv1 = (TextView)findViewById(R.id.rolenameView);
-                        TextView tv2 = (TextView) findViewById(R.id.taskdescriptionView);
+                        EditText rolenameET = (EditText) findViewById(R.id.rolenameView);
+                        EditText taskdescriptionET = (EditText) findViewById(R.id.taskdescriptionView);
 
                         Actor actor = dataSnapshot.getValue(Actor.class);
 
                         String rolename = actor.getRolename();
-                        tv1.setText(rolename);
+                        rolenameET.setText(rolename);
 
                         String taskdescription = actor.getTaskdescription();
-                        tv2.setText(taskdescription);
+                        taskdescriptionET.setText(taskdescription);
+
+                        analist = actor.getAnalist();
+
+                        SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+                        if (!analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+                            rolenameET.setKeyListener(null);
+                            taskdescriptionET.setKeyListener(null);
+                            newPerson.setVisibility(View.INVISIBLE);
+                        }
                     }
 
                     @Override
@@ -74,16 +94,8 @@ public class ShowActorContent extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        Button newPerson = (Button) findViewById(R.id.button_new_person);
-        newPerson.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(ShowActorContent.this, CreatePerson.class );
-                i.putExtra("key", key);
-                startActivity(i);
-            }
-        });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,18 +111,32 @@ public class ShowActorContent extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+        if(analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+            if (id == R.id.editItem) {
+                EditText rolenameET = (EditText) findViewById(R.id.rolenameView);
+                EditText taskdescriptionET = (EditText) findViewById(R.id.taskdescriptionView);
 
-        if (id == R.id.archiveItem) {
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("actors").child(key).child("archived").setValue(true);
-            finish();
-            return true;
-        }
-        if (id == R.id.deleteItem) {
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("actors").child(key).removeValue();
-            finish();
-            return true;
+                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("actors").child(key).child("rolename").setValue(rolenameET.getText().toString());
+                mDatabase.child("actors").child(key).child("taskdescription").setValue(taskdescriptionET.getText().toString());
+                finish();
+                return true;
+            }
+            if (id == R.id.archiveItem) {
+                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("actors").child(key).child("archived").setValue(true);
+                finish();
+                return true;
+            }
+            if (id == R.id.deleteItem) {
+                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("actors").child(key).removeValue();
+                finish();
+                return true;
+            }
+        } else{
+            Toast.makeText(this, this.getString(R.string.analistAction), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
