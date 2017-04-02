@@ -1,4 +1,4 @@
-package nl.hu.fed.actortemplateapp;
+package nl.hu.fed.actortemplateapp.domain;
 
 import java.util.ArrayList;
 
@@ -8,17 +8,8 @@ import java.util.ArrayList;
 
 public class Actor {
     private String rolename, taskdescription, projectKey;
-    private ArrayList<Person> actorPersons;
     private boolean archived;
-    String key;
-
-    public ArrayList<Person> getActorPersons() {
-        return actorPersons;
-    }
-
-    public void setActorPersons(ArrayList<Person> actorPersons) {
-        this.actorPersons = actorPersons;
-    }
+    public String key;
 
     public boolean isArchived() {
         return archived;

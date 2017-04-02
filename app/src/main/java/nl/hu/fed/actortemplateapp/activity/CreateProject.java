@@ -1,8 +1,7 @@
-package nl.hu.fed.actortemplateapp;
+package nl.hu.fed.actortemplateapp.activity;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,20 +10,23 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CreateActor extends AppCompatActivity {
-    EditText roleET, descriptionET;
+import nl.hu.fed.actortemplateapp.R;
+import nl.hu.fed.actortemplateapp.domain.Project;
+
+public class CreateProject extends AppCompatActivity {
+    EditText titleET, descriptionET;
     private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_actor);
+        setContentView(R.layout.activity_create_project);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //crashed als op terug wordt gedrukt. Komt door key.
-        roleET = (EditText) findViewById(R.id.editTextRoleName);
-        descriptionET = (EditText) findViewById(R.id.editTextDescriptionActor);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        titleET = (EditText) findViewById(R.id.editTextTitle1);
+        descriptionET = (EditText) findViewById(R.id.editTextDescriptionProject);
+        mDatabase =  FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -43,18 +45,18 @@ public class CreateActor extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.saveItem) {
-            Actor actor = new Actor();
-            actor.setRolename(roleET.getText().toString());
-            actor.setTaskdescription(descriptionET.getText().toString());
-            Intent intent = getIntent();
-            actor.setProjectKey(intent.getStringExtra("key"));
+            Project project = new Project();
+            project.setTitle(titleET.getText().toString());
+            project.setDescription(descriptionET.getText().toString());
 
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("actors").push().setValue(actor);
+            DatabaseReference mDatabase =  FirebaseDatabase.getInstance().getReference();
+            mDatabase.child("projects").push().setValue(project);
 
             finish();
+
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 }

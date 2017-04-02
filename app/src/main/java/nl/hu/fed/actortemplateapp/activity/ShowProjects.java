@@ -1,4 +1,4 @@
-package nl.hu.fed.actortemplateapp;
+package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
+
+import nl.hu.fed.actortemplateapp.R;
+import nl.hu.fed.actortemplateapp.adapters.ProjectsAdapter;
 
 public class ShowProjects extends BaseActivity {
 

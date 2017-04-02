@@ -6,7 +6,6 @@
     android:padding="6dip">
     <TextView
         android:text="Role"
-        android:background="@drawable/project_background"
         android:layout_width="wrap_content"
         android:id="@+id/rolename"
         android:textSize="16dip"
@@ -14,7 +13,6 @@
         android:layout_height="wrap_content"></TextView>
 
     <TextView android:text="Description"
-        android:background="@drawable/project_background"
         android:layout_width="wrap_content"
         android:id="@+id/descriptionActor"
         android:layout_height="wrap_content"

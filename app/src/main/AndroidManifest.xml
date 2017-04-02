@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ShowProjects"
+            android:name=".activity.ShowProjects"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,72 +20,75 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SignInActivity" />
+        <activity android:name=".activity.SignInActivity" />
 
         <activity
-            android:name=".ShowProjectContent"
+            android:name=".activity.ShowProjectContent"
             android:label="Project detail"
-            android:parentActivityName=".ShowProjects"
+            android:parentActivityName=".activity.ShowProjects"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nl.hu.fed.actortemplateapp.ShowProjects" />
+                android:value="nl.hu.fed.actortemplateapp.activity.ShowProjects" />
         </activity>
 
         <activity
-            android:name=".CreateProject"
+            android:name=".activity.CreateProject"
             android:label="New Project"
-            android:parentActivityName=".ShowProjects"
+            android:parentActivityName=".activity.ShowProjects"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nl.hu.fed.actortemplateapp.ShowProjects" />
+                android:value="nl.hu.fed.actortemplateapp.activity.ShowProjects" />
         </activity>
 
         <activity
-            android:name=".CreateActor"
+            android:name=".activity.CreateActor"
             android:label="New Actor"
-            android:parentActivityName=".ShowProjectContent"
+            android:parentActivityName=".activity.ShowProjectContent"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nl.hu.fed.actortemplateapp.ShowProjectContent" />
+                android:value="nl.hu.fed.actortemplateapp.activity.ShowProjectContent" />
         </activity>
 
         <activity
-            android:name=".BaseActivity"
+            android:name=".activity.BaseActivity"
             android:label="@string/title_activity_base"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".ShowActorContent"
+            android:name=".activity.ShowActorContent"
             android:label="Actor detail"
-            android:parentActivityName=".ShowProjectContent"
+            android:parentActivityName=".activity.ShowProjectContent"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nl.hu.fed.actortemplateapp.ShowProjectContent" />
+                android:value="nl.hu.fed.actortemplateapp.activity.ShowProjectContent" />
         </activity>
 
         <activity
-            android:name=".ShowPersonContent"
+            android:name=".activity.ShowPersonContent"
             android:label="Person detail"
-            android:parentActivityName=".ShowActorContent"
+            android:parentActivityName=".activity.ShowActorContent"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nl.hu.fed.actortemplateapp.ShowActorContent" />
+                android:value="nl.hu.fed.actortemplateapp.activity.ShowActorContent" />
         </activity>
 
         <activity
-            android:name=".CreatePerson"
+            android:name=".activity.CreatePerson"
             android:label="New Person"
-            android:parentActivityName=".ShowActorContent"
+            android:parentActivityName=".activity.ShowActorContent"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nl.hu.fed.actortemplateapp.ShowActorContent" />
+                android:value="nl.hu.fed.actortemplateapp.activity.ShowActorContent" />
         </activity>
+
+        <uses-feature android:name="android.hardware.camera"
+            android:required="true" />
 
     </application>
 

@@ -1,16 +1,15 @@
-package nl.hu.fed.actortemplateapp;
+package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,8 +18,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import nl.hu.fed.actortemplateapp.R;
+import nl.hu.fed.actortemplateapp.cameraMethods.CameraFunctions;
+import nl.hu.fed.actortemplateapp.domain.Person;
+
 public class ShowPersonContent extends AppCompatActivity {
     String key;
+    private CameraFunctions cameraFunctions = new CameraFunctions();
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     @Override
@@ -43,7 +47,7 @@ public class ShowPersonContent extends AppCompatActivity {
                         TextView functionField = (TextView) findViewById(R.id.functionView);
                         TextView phonenumberField = (TextView) findViewById(R.id.phonenumberView);
                         TextView notesField = (TextView) findViewById(R.id.notesView);
-                        TextView photoField = (TextView) findViewById(R.id.photoView);
+                        ImageView photoField = (ImageView) findViewById(R.id.photoView);
 
                         Person person = dataSnapshot.getValue(Person.class);
 
@@ -62,8 +66,8 @@ public class ShowPersonContent extends AppCompatActivity {
                         String notes = person.getNotes();
                         notesField.setText(notes);
 
-                        String photo = person.getPhoto();
-                        photoField.setText(photo);
+                        photoField.setImageBitmap(cameraFunctions.fromStringToImage(person.getPhoto()));
+
                     }
 
                     @Override
@@ -89,7 +93,14 @@ public class ShowPersonContent extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.deleteitem) {
+
+        if (id == R.id.archiveItem) {
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+            mDatabase.child("persons").child(key).child("archived").setValue(true);
+            finish();
+            return true;
+        }
+        if (id == R.id.deleteItem) {
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
             mDatabase.child("persons").child(key).removeValue();
             finish();

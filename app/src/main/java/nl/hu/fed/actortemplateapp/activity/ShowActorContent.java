@@ -1,9 +1,8 @@
-package nl.hu.fed.actortemplateapp;
+package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,40 +19,43 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ShowProjectContent extends AppCompatActivity {
+import nl.hu.fed.actortemplateapp.R;
+import nl.hu.fed.actortemplateapp.adapters.PersonsAdapter;
+import nl.hu.fed.actortemplateapp.domain.Actor;
+
+public class ShowActorContent extends AppCompatActivity {
     String key;
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
-    private String TAG = "ShowActors";
+    private String TAG = "ShowPersons";
     private RecyclerView recyclerView;
-    private ActorsAdapter mAdapter;
+    private PersonsAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_project_content);
+        setContentView(R.layout.activity_show_actor_content);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("projects").child(key).addListenerForSingleValueEvent(
+        mDatabase.child("actors").child(key).addListenerForSingleValueEvent(
                 new ValueEventListener() {
 
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        TextView tv1 = (TextView)findViewById(R.id.titleView);
-                        TextView tv2 = (TextView) findViewById(R.id.descriptionView);
+                        TextView tv1 = (TextView)findViewById(R.id.rolenameView);
+                        TextView tv2 = (TextView) findViewById(R.id.taskdescriptionView);
 
-                        Project project = dataSnapshot.getValue(Project.class);
+                        Actor actor = dataSnapshot.getValue(Actor.class);
 
-                        String title = project.getTitle();
-                        tv1.setText(title);
+                        String rolename = actor.getRolename();
+                        tv1.setText(rolename);
 
-                        String content = project.getDescription();
-                        tv2.setText(content);
+                        String taskdescription = actor.getTaskdescription();
+                        tv2.setText(taskdescription);
                     }
 
                     @Override
@@ -64,19 +66,19 @@ public class ShowProjectContent extends AppCompatActivity {
         );
 
         //add a OnItemClickListener
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_actors);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_persons);
 
-        mAdapter = new ActorsAdapter();
+        mAdapter = new PersonsAdapter(key);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        Button newActor = (Button) findViewById(R.id.button_new_actor);
-        newActor.setOnClickListener(new View.OnClickListener() {
+        Button newPerson = (Button) findViewById(R.id.button_new_person);
+        newPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ShowProjectContent.this, CreateActor.class );
+                Intent i = new Intent(ShowActorContent.this, CreatePerson.class );
                 i.putExtra("key", key);
                 startActivity(i);
             }
@@ -97,9 +99,16 @@ public class ShowProjectContent extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.deleteitem) {
+
+        if (id == R.id.archiveItem) {
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("projects").child(key).removeValue();
+            mDatabase.child("actors").child(key).child("archived").setValue(true);
+            finish();
+            return true;
+        }
+        if (id == R.id.deleteItem) {
+            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+            mDatabase.child("actors").child(key).removeValue();
             finish();
             return true;
         }

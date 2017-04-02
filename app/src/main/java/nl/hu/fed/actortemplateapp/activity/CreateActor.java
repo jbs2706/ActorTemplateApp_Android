@@ -1,8 +1,8 @@
-package nl.hu.fed.actortemplateapp;
+package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,24 +11,22 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CreatePerson extends AppCompatActivity {
-    EditText nameET, emailET, functionET, phonenumberET, notesET, photoET;
+import nl.hu.fed.actortemplateapp.R;
+import nl.hu.fed.actortemplateapp.domain.Actor;
+
+public class CreateActor extends AppCompatActivity {
+    EditText roleET, descriptionET;
     private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_person);
+        setContentView(R.layout.activity_create_actor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //crashed als op terug wordt gedrukt. Komt door key.
-        nameET = (EditText) findViewById(R.id.editTextName);
-        emailET = (EditText) findViewById(R.id.editTextEmail);
-        functionET = (EditText) findViewById(R.id.editTextFunction);
-        phonenumberET = (EditText) findViewById(R.id.editTextPhonenumber);
-        notesET = (EditText) findViewById(R.id.editTextNotes);
-        photoET = (EditText) findViewById(R.id.editTextPhoto);
-
+        roleET = (EditText) findViewById(R.id.editTextRoleName);
+        descriptionET = (EditText) findViewById(R.id.editTextDescriptionActor);
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -48,19 +46,14 @@ public class CreatePerson extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.saveItem) {
-            Person person = new Person();
-            person.setName(nameET.getText().toString());
-            person.setEmail(emailET.getText().toString());
-            person.setFunction(functionET.getText().toString());
-            person.setPhonenumber(phonenumberET.getText().toString());
-            person.setNotes(notesET.getText().toString());
-            person.setPhoto(photoET.getText().toString());
-
+            Actor actor = new Actor();
+            actor.setRolename(roleET.getText().toString());
+            actor.setTaskdescription(descriptionET.getText().toString());
             Intent intent = getIntent();
-            person.setActorkey(intent.getStringExtra("key"));
+            actor.setProjectKey(intent.getStringExtra("key"));
 
             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("persons").push().setValue(person);
+            mDatabase.child("actors").push().setValue(actor);
 
             finish();
         }

@@ -1,4 +1,4 @@
-package nl.hu.fed.actortemplateapp;
+package nl.hu.fed.actortemplateapp.domain;
 
 /**
  * Created by jonah-pc on 20-Mar-17.
@@ -6,7 +6,8 @@ package nl.hu.fed.actortemplateapp;
 
 public class Person {
     private String name, email, function, phonenumber, notes, photo, actorkey;
-    String key;
+    private boolean archived;
+    public String key;
 
     public String getName() {
         return name;
@@ -64,4 +65,11 @@ public class Person {
         this.actorkey = actorkey;
     }
 
+    public boolean isArchived() {
+        return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
 }

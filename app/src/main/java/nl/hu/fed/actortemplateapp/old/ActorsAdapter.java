@@ -1,4 +1,4 @@
-package nl.hu.fed.actortemplateapp;
+package nl.hu.fed.actortemplateapp.old;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -17,40 +17,47 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.MyViewHolder> {
+import nl.hu.fed.actortemplateapp.R;
+import nl.hu.fed.actortemplateapp.activity.ShowActorContent;
+import nl.hu.fed.actortemplateapp.domain.Actor;
 
-    private List<Project> projectList = new ArrayList<>();
+public class ActorsAdapter extends RecyclerView.Adapter<ActorsAdapter.MyViewHolder> {
+
+    private List<Actor> actorList = new ArrayList<>();
     private DatabaseReference mDatabase;
-    private String TAG = "ProjectsAdapter";
+    private String TAG = "ActorsAdapter";
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView title, description;
+        public TextView rolename, description;
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            description = (TextView) view.findViewById(R.id.descriptionProject);
+            rolename = (TextView) view.findViewById(R.id.rolename);
+            description = (TextView) view.findViewById(R.id.descriptionActor);
             view.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             int pos = getAdapterPosition();
-            Project entry = projectList.get(pos);
-            Intent intent = new Intent(v.getContext(), ShowProjectContent.class);
-            intent.putExtra("key", entry.key);
+            Actor newActor = actorList.get(pos);
+            Intent intent = new Intent(v.getContext(), ShowActorContent.class);
+            intent.putExtra("key", newActor.key);
             v.getContext().startActivity(intent);
         }
     }
 
-    public ProjectsAdapter() {
+    public ActorsAdapter(final String projectkey) {
         mDatabase =  FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("projects").addChildEventListener(new ChildEventListener() {
+        mDatabase.child("actors").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Project e = dataSnapshot.getValue(Project.class);
-                e.key = dataSnapshot.getKey();
-                projectList.add(e);
+                Actor actor = dataSnapshot.getValue(Actor.class);
+                actor.key = dataSnapshot.getKey();
+                if(actor.getProjectKey().equals(projectkey) && !actor.isArchived()) {
+                    actorList.add(actor);
+                }
+
                 notifyDataSetChanged();
             }
             @Override
@@ -60,8 +67,7 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.MyView
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.child("projects").child(dataSnapshot.getKey()).removeValue();
+                actorList.remove( dataSnapshot.getKey());
                 notifyDataSetChanged();
             }
 
@@ -80,21 +86,21 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_project, parent, false);
+                .inflate(R.layout.row_actor, parent, false);
 
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Project project = projectList.get(position);
-        holder.title.setText(project.getTitle());
-        holder.description.setText(project.getDescription());
+        Actor actor = actorList.get(position);
+        holder.rolename.setText(actor.getRolename());
+        holder.description.setText(actor.getTaskdescription());
     }
 
     @Override
     public int getItemCount() {
-        return projectList.size();
+        return actorList.size();
     }
 }
 

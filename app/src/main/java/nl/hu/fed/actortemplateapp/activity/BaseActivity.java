@@ -1,4 +1,4 @@
-package nl.hu.fed.actortemplateapp;
+package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import nl.hu.fed.actortemplateapp.R;
 
 public class BaseActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
