@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "170747228463",
-    "firebase_url": "https://actortemplateapp-a1921.firebaseio.com",
-    "project_id": "actortemplateapp-a1921",
-    "storage_bucket": "actortemplateapp-a1921.appspot.com"
+    "project_number": "237314027784",
+    "firebase_url": "https://actortemplateapp-a2713.firebaseio.com",
+    "project_id": "actortemplateapp-a2713",
+    "storage_bucket": "actortemplateapp-a2713.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:170747228463:android:22bdb5307ecf8db1",
+        "mobilesdk_app_id": "1:237314027784:android:22bdb5307ecf8db1",
         "android_client_info": {
           "package_name": "nl.hu.fed.actortemplateapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "170747228463-a1gq0gurshiioagnsvp384b7rr91clvp.apps.googleusercontent.com",
+          "client_id": "237314027784-2u16ttgt5mlfo8u88iqg48if4uj5hv7q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "nl.hu.fed.actortemplateapp",
@@ -23,7 +23,7 @@
           }
         },
         {
-          "client_id": "170747228463-cva7u9ntb6bhrvmigcjo4atcp6t4a1se.apps.googleusercontent.com",
+          "client_id": "237314027784-63q00m4qgkvs770qe25pacj7tq8e15a9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "nl.hu.fed.actortemplateapp",
@@ -31,13 +31,13 @@
           }
         },
         {
-          "client_id": "170747228463-lmb1bmdeecms51tmfu1d96regtobe7g7.apps.googleusercontent.com",
+          "client_id": "237314027784-qcr0g6cob8fufm36v9btnhek8fimdnrg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDlWHa64WhM3iuvzzjxuQoxu5vz4d5MhqE"
+          "current_key": "AIzaSyADy4AHWS6Ri4bdijO3x4bqS0Uuv3GhA5Q"
         }
       ],
       "services": {
@@ -48,7 +48,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "170747228463-lmb1bmdeecms51tmfu1d96regtobe7g7.apps.googleusercontent.com",
+              "client_id": "237314027784-qcr0g6cob8fufm36v9btnhek8fimdnrg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
