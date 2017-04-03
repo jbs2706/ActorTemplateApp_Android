@@ -69,10 +69,7 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.account:
-                mFirebaseAuth.signOut();
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-                mUsername = ANONYMOUS;
-                startActivity(new Intent(this, SignInActivity.class));
+                startActivity(new Intent(this, MyAccount.class));
                 return true;
 
             case R.id.all_projects:

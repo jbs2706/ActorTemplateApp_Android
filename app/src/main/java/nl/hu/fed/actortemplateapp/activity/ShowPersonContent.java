@@ -2,18 +2,17 @@ package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -90,6 +89,20 @@ public class ShowPersonContent extends AppCompatActivity {
                     }
                 }
         );
+        addListenerOnImageButton();
+    }
+
+    public void addListenerOnImageButton() {
+        ImageButton imageButtonPhone = (ImageButton) findViewById(R.id.imageButtonPhone);
+
+        imageButtonPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                EditText phonenumberField = (EditText) findViewById(R.id.phonenumberView);
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phonenumberField.getText().toString()));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

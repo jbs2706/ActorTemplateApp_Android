@@ -1,7 +1,5 @@
 package nl.hu.fed.actortemplateapp.domain;
 
-import java.util.ArrayList;
-
 /**
  * Created by jonah-pc on 20-Mar-17.
  */

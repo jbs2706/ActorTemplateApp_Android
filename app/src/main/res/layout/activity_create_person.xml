@@ -21,8 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
@@ -37,10 +36,6 @@
             >
         </TextView>
 
-        <ImageView
-            android:id="@+id/imageViewPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
@@ -52,14 +47,20 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 app:srcCompat="@drawable/gallery"
-                android:layout_margin="5dp"
-                android:id="@+id/imageGallery" />
+                android:layout_margin="15dp"
+                android:id="@+id/imageGallery"/>
+
+            <ImageView
+                android:id="@+id/imageViewPhoto"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/defaultpersonphoto"/>
 
             <ImageButton
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 app:srcCompat="@drawable/camera"
-                android:layout_margin="5dp"
+                android:layout_margin="15dp"
                 android:id="@+id/imageCamera" />
 
         </LinearLayout>
@@ -67,7 +68,7 @@
         <TextView android:text="Full name"
             android:id="@+id/textViewFullName"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             >
         </TextView>
         <EditText
@@ -81,7 +82,7 @@
             android:text="Email"
             android:id="@+id/textViewEmail"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             >
         </TextView>
         <EditText
@@ -95,7 +96,7 @@
             android:text="Function"
             android:id="@+id/textViewFunction"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             >
         </TextView>
         <EditText
@@ -109,22 +110,38 @@
             android:text="Phonenumber"
             android:id="@+id/textViewPhonenumber"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             >
         </TextView>
-        <EditText
-            android:id="@+id/editTextPhonenumber"
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="enter phone number">
-        </EditText>
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <ImageView
+                android:id="@+id/imageViewPhone"
+                android:layout_width="25dp"
+                android:layout_height="35dp"
+                android:src="@drawable/phone"/>
+
+            <EditText
+                android:id="@+id/editTextPhonenumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:hint="enter phone number">
+            </EditText>
+
+        </LinearLayout>
 
         <TextView
             android:text="Notes"
             android:id="@+id/textViewNotes"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             >
         </TextView>
         <EditText

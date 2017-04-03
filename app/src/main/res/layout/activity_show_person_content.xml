@@ -33,60 +33,63 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".activity.ShowPersonContent"
-        tools:showIn="@layout/activity_show_person_content">
-
-        <ImageView
-            android:id="@+id/photoView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+        tools:showIn="@layout/activity_show_person_content"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true" >
 
         <EditText
             android:text="Name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nameView"
-            android:textStyle="bold|italic"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/photoView"
-            android:layout_alignLeft="@id/photoView"
-            android:layout_marginTop="23dp" />
+            android:textStyle="bold|italic" />
+
+        <ImageView
+            android:id="@+id/photoView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignLeft="@+id/nameView"
+            android:layout_below="@+id/nameView"
+            android:layout_margin="10dp" />
 
         <EditText
             android:text="Email"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/emailView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/nameView"
-            android:layout_alignLeft="@id/nameView"
-            android:layout_marginTop="20dp" />
+            android:layout_toRightOf="@id/photoView"
+            android:layout_alignTop="@id/photoView" />
 
         <EditText
             android:text="Function"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/functionView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@id/emailView"
             android:layout_alignLeft="@id/emailView"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="5dp" />
 
-        <EditText
-            android:text="Phonenumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/phonenumberView"
+        <ImageButton
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/functionView"
             android:layout_alignLeft="@id/functionView"
-            android:layout_marginTop="20dp" />
+            app:srcCompat="@drawable/phone"
+            android:layout_marginTop="15dp"
+            android:id="@+id/imageButtonPhone" />
+
+        <EditText
+            android:text="Phonenumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/phonenumberView"
+            android:layout_below="@id/functionView"
+            android:layout_toRightOf="@id/imageButtonPhone"
+            android:layout_marginTop="15dp" />
 
         <EditText
             android:text="Notes"
@@ -94,10 +97,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/notesView"
             tools:lines="5"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@id/phonenumberView"
-            android:layout_alignLeft="@id/phonenumberView"
             android:layout_marginTop="20dp" />
 
     </RelativeLayout>

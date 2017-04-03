@@ -1,15 +1,13 @@
 package nl.hu.fed.actortemplateapp.adapters;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import nl.hu.fed.actortemplateapp.R;
 import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.FirebaseDatabase;
-import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.activity.ShowProjectContent;
 import nl.hu.fed.actortemplateapp.domain.Project;
 

@@ -1,9 +1,5 @@
 package nl.hu.fed.actortemplateapp.domain;
 
-import java.util.ArrayList;
-
-import nl.hu.fed.actortemplateapp.domain.Actor;
-
 public class Project {
 
     private String title, description, analist;

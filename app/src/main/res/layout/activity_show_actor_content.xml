@@ -33,7 +33,9 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".activity.ShowActorContent"
-        tools:showIn="@layout/activity_show_actor_content">
+        tools:showIn="@layout/activity_show_actor_content"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true" >
 
 
         <EditText
@@ -45,19 +47,19 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="23dp" />
+            android:layout_marginTop="20dp" />
 
         <EditText
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/taskdescriptionView"
-            tools:lines="5"
+            tools:lines="4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/rolenameView"
             android:layout_alignLeft="@id/rolenameView"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="5dp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_persons"

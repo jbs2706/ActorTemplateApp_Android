@@ -63,9 +63,6 @@ public class CreatePerson extends AppCompatActivity {
                 Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 pickIntent.setType("image/*");
 
-/*                Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
-                Intent intent = chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});*/
-
                 startActivityForResult(pickIntent, SELECT_PHOTO);
             }
         });
