@@ -8,7 +8,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".activity.ShowProjects"
             android:label="@string/app_name"
@@ -19,9 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.SignInActivity" />
-
         <activity
             android:name=".activity.ShowProjectContent"
             android:label="Project detail"
@@ -31,7 +28,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.hu.fed.actortemplateapp.activity.ShowProjects" />
         </activity>
-
         <activity
             android:name=".activity.CreateProject"
             android:label="New Project"
@@ -41,7 +37,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.hu.fed.actortemplateapp.activity.ShowProjects" />
         </activity>
-
         <activity
             android:name=".activity.CreateActor"
             android:label="New Actor"
@@ -51,12 +46,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.hu.fed.actortemplateapp.activity.ShowProjectContent" />
         </activity>
-
         <activity
             android:name=".activity.BaseActivity"
             android:label="@string/title_activity_base"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".activity.ShowActorContent"
             android:label="Actor detail"
@@ -66,7 +59,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.hu.fed.actortemplateapp.activity.ShowProjectContent" />
         </activity>
-
         <activity
             android:name=".activity.ShowPersonContent"
             android:label="Person detail"
@@ -76,7 +68,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.hu.fed.actortemplateapp.activity.ShowActorContent" />
         </activity>
-
         <activity
             android:name=".activity.CreatePerson"
             android:label="New Person"
@@ -87,9 +78,19 @@
                 android:value="nl.hu.fed.actortemplateapp.activity.ShowActorContent" />
         </activity>
 
-        <uses-feature android:name="android.hardware.camera"
+        <uses-feature
+            android:name="android.hardware.camera"
             android:required="true" />
 
+        <activity
+            android:name=".activity.MyAccount"
+            android:label="My Account"
+            android:parentActivityName=".activity.ShowProjects"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.hu.fed.actortemplateapp.activity.ShowProjects" />
+        </activity>
     </application>
 
 </manifest>

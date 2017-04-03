@@ -123,7 +123,7 @@ public class CreatePerson extends AppCompatActivity {
             person.setNotes(notesET.getText().toString());
 
             if(photoIV.getDrawable() == null) {
-                person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.defaultphoto, null)));
+                person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.defaultpersonphoto, null)));
             }
             else{
                 person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) photoIV.getDrawable()));
