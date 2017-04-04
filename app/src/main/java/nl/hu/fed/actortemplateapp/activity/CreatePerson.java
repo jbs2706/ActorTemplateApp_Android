@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 import nl.hu.fed.actortemplateapp.R;
-import nl.hu.fed.actortemplateapp.cameraMethods.CameraFunctions;
+import nl.hu.fed.actortemplateapp.camera.CameraFunctions;
 import nl.hu.fed.actortemplateapp.domain.Person;
 
 public class CreatePerson extends AppCompatActivity {

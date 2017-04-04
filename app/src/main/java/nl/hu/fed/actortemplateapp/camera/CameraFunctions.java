@@ -1,4 +1,4 @@
-package nl.hu.fed.actortemplateapp.cameraMethods;
+package nl.hu.fed.actortemplateapp.camera;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

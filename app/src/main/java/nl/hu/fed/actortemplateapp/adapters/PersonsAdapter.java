@@ -9,7 +9,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.FirebaseDatabase;
 import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.activity.ShowPersonContent;
-import nl.hu.fed.actortemplateapp.cameraMethods.CameraFunctions;
+import nl.hu.fed.actortemplateapp.camera.CameraFunctions;
 import nl.hu.fed.actortemplateapp.domain.Person;
 
 public class PersonsAdapter extends FirebaseRecyclerAdapter<Person, PersonsAdapter.MyViewHolder> {
@@ -18,7 +18,7 @@ public class PersonsAdapter extends FirebaseRecyclerAdapter<Person, PersonsAdapt
 
     public PersonsAdapter(String actorKey) {
         super(Person.class, R.layout.row_person, PersonsAdapter.MyViewHolder.class,
-                FirebaseDatabase.getInstance().getReference().child("persons").orderByChild("actorKey").equalTo(actorKey));
+                FirebaseDatabase.getInstance().getReference().child("persons").orderByChild("actorKey").equalTo(actorKey)); //todo filter op archive
     }
 
     @Override

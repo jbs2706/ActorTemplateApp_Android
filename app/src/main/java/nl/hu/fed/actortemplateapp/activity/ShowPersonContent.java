@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import nl.hu.fed.actortemplateapp.R;
-import nl.hu.fed.actortemplateapp.cameraMethods.CameraFunctions;
+import nl.hu.fed.actortemplateapp.camera.CameraFunctions;
 import nl.hu.fed.actortemplateapp.domain.Person;
 
 public class ShowPersonContent extends AppCompatActivity {
