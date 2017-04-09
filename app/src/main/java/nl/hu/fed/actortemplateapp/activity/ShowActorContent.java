@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,12 +22,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.adapters.PersonsAdapter;
 import nl.hu.fed.actortemplateapp.domain.Actor;
 
 public class ShowActorContent extends AppCompatActivity {
-    private String key, analist, TAG = "ShowPersons";
+    private String key, projectName, actorName, analist, TAG = "ShowPersons";
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private RecyclerView recyclerView;
     private PersonsAdapter mAdapter;
@@ -44,12 +47,15 @@ public class ShowActorContent extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(ShowActorContent.this, CreatePerson.class);
                 i.putExtra("key", key);
+                i.putExtra("project", projectName);
+                i.putExtra("actor", actorName);
                 startActivity(i);
             }
         });
 
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
+        projectName = intent.getStringExtra("project");
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("actors").child(key).addListenerForSingleValueEvent(
                 new ValueEventListener() {
@@ -58,14 +64,17 @@ public class ShowActorContent extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         EditText rolenameET = (EditText) findViewById(R.id.rolenameView);
                         EditText taskdescriptionET = (EditText) findViewById(R.id.taskdescriptionView);
+                        TextView projectTV = (TextView) findViewById(R.id.textViewActorProject);
 
                         Actor actor = dataSnapshot.getValue(Actor.class);
 
-                        String rolename = actor.getRolename();
-                        rolenameET.setText(rolename);
+                        actorName = actor.getRolename();
+                        rolenameET.setText(actorName);
 
                         String taskdescription = actor.getTaskdescription();
                         taskdescriptionET.setText(taskdescription);
+
+                        projectTV.setText("Project: " + projectName);
 
                         analist = actor.getAnalist();
 
@@ -87,7 +96,7 @@ public class ShowActorContent extends AppCompatActivity {
         //add a OnItemClickListener
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_persons);
 
-        mAdapter = new PersonsAdapter(key);
+        mAdapter = new PersonsAdapter(key, projectName, actorName);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

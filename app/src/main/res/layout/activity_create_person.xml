@@ -29,6 +29,18 @@
         android:orientation="vertical" >
 
         <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewCreatePersonActorProject" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"
+            android:layout_below="@id/textViewCreatePersonActorProject"/>
+
+        <TextView
             android:text="Photo"
             android:id="@+id/textViewPhoto"
             android:layout_height="wrap_content"

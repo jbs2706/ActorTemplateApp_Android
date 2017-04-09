@@ -48,4 +48,9 @@
         android:layout_below="@+id/function"
         android:layout_alignLeft="@+id/function"></TextView>
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"/>
+
 </RelativeLayout>

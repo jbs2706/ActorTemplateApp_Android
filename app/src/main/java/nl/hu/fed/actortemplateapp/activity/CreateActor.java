@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,6 +30,12 @@ public class CreateActor extends AppCompatActivity {
         roleET = (EditText) findViewById(R.id.editTextRoleName);
         descriptionET = (EditText) findViewById(R.id.editTextDescriptionActor);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        Intent intent = getIntent();
+        String projectName = intent.getStringExtra("project");
+
+        TextView projectTV = (TextView) findViewById(R.id.textViewCreateActorProject);
+        projectTV.setText("Project: " + projectName);
     }
 
     @Override

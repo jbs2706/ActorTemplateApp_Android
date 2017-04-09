@@ -17,10 +17,13 @@ import nl.hu.fed.actortemplateapp.domain.Person;
 public class PersonsAdapter extends FirebaseRecyclerAdapter<Person, PersonsAdapter.MyViewHolder> {
 
     private CameraFunctions cameraFunctions = new CameraFunctions();
+    private static String projectName, actorName;
 
-    public PersonsAdapter(String actorKey) {
+    public PersonsAdapter(String actorKey, String project, String actor) {
         super(Person.class, R.layout.row_person, PersonsAdapter.MyViewHolder.class,
                 FirebaseDatabase.getInstance().getReference().child("persons").orderByChild("actorKey").equalTo(actorKey));
+        projectName = project;
+        actorName = actor;
     }
 
     @Override
@@ -62,6 +65,8 @@ public class PersonsAdapter extends FirebaseRecyclerAdapter<Person, PersonsAdapt
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), ShowPersonContent.class);
             intent.putExtra("key", key);
+            intent.putExtra("project", projectName);
+            intent.putExtra("actor", actorName);
             v.getContext().startActivity(intent);
         }
     }

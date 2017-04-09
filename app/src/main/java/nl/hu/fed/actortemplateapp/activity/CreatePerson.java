@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
@@ -46,6 +48,13 @@ public class CreatePerson extends AppCompatActivity {
         photoIV = (ImageView) findViewById(R.id.imageViewPhoto);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        Intent intent = getIntent();
+        String projectName = intent.getStringExtra("project");
+        String actorName = intent.getStringExtra("actor");
+
+        TextView projectAndActorTV = (TextView) findViewById(R.id.textViewCreatePersonActorProject);
+        projectAndActorTV.setText("Project: " + projectName + " -  Actor: " + actorName);
 
         addListenerOnImageButtons();
     }
@@ -92,6 +101,7 @@ public class CreatePerson extends AppCompatActivity {
             photoIV.setImageBitmap(processedImage);
         }
         if (requestCode == TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
+            cameraFunctions.verifyStoragePermissions(this);
             photoIV.setImageBitmap(cameraFunctions.processCapturedImage(data));
         }
     }

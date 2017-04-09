@@ -29,4 +29,9 @@
         android:layout_toRightOf="@+id/analistProject"
         android:layout_alignTop="@+id/analistProject" />
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"/>
+
 </RelativeLayout>

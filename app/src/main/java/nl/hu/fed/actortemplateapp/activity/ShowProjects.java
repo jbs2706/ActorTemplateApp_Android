@@ -41,13 +41,13 @@ public class ShowProjects extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ShowProjects.this, CreateProject.class);
-                startActivity(i);
+                SharedPreferences userInfo2 = getSharedPreferences("USERID", 0);
+                if (!userInfo2.getString("userRole", "NotSignedIn").equals("teamlid")) {
+                    Intent i = new Intent(ShowProjects.this, CreateProject.class);
+                    startActivity(i);
+                }
             }
         });
-        if (userInfo.getString("userRole", "NotSignedIn").equals("teamlid")) {
-            fab.setVisibility(View.GONE);
-        }
 
 		recyclerView = (RecyclerView) findViewById(R.id.recycler_view_projects);
 

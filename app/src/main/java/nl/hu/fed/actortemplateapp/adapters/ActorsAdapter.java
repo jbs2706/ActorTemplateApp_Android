@@ -12,9 +12,12 @@ import nl.hu.fed.actortemplateapp.domain.Actor;
 
 public class ActorsAdapter extends FirebaseRecyclerAdapter<Actor, ActorsAdapter.MyViewHolder> {
 
-    public ActorsAdapter(String projectKey) {
+    public static String projectName;
+
+    public ActorsAdapter(String projectKey, String project) {
         super(Actor.class, R.layout.row_actor, ActorsAdapter.MyViewHolder.class,
                 FirebaseDatabase.getInstance().getReference().child("actors").orderByChild("projectKey").equalTo(projectKey));
+        projectName = project;
     }
 
     @Override
@@ -46,6 +49,7 @@ public class ActorsAdapter extends FirebaseRecyclerAdapter<Actor, ActorsAdapter.
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), ShowActorContent.class);
             intent.putExtra("key", key);
+            intent.putExtra("project", projectName);
             v.getContext().startActivity(intent);
         }
     }

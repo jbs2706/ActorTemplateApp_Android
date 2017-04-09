@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +27,7 @@ import nl.hu.fed.actortemplateapp.camera.CameraFunctions;
 import nl.hu.fed.actortemplateapp.domain.Person;
 
 public class ShowPersonContent extends AppCompatActivity {
-    private String key, analist;
+    private String key, projectName, actorName, analist;
     private CameraFunctions cameraFunctions = new CameraFunctions();
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -39,6 +40,8 @@ public class ShowPersonContent extends AppCompatActivity {
 
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
+        projectName = intent.getStringExtra("project");
+        actorName = intent.getStringExtra("actor");
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("persons").child(key).addListenerForSingleValueEvent(
                 new ValueEventListener() {
@@ -51,6 +54,7 @@ public class ShowPersonContent extends AppCompatActivity {
                         EditText phonenumberField = (EditText) findViewById(R.id.phonenumberView);
                         EditText notesField = (EditText) findViewById(R.id.notesView);
                         ImageView photoField = (ImageView) findViewById(R.id.photoView);
+                        TextView projectAndActorTV = (TextView) findViewById(R.id.textViewPersonProjectActor);
 
                         Person person = dataSnapshot.getValue(Person.class);
 
@@ -70,6 +74,8 @@ public class ShowPersonContent extends AppCompatActivity {
                         notesField.setText(notes);
 
                         photoField.setImageBitmap(cameraFunctions.fromStringToImage(person.getPhoto()));
+
+                        projectAndActorTV.setText("Project: " + projectName + " -  Actor: " + actorName);
 
                         analist = person.getAnalist();
 

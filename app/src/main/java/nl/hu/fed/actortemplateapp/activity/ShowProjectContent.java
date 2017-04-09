@@ -24,10 +24,11 @@ import nl.hu.fed.actortemplateapp.adapters.ActorsAdapter;
 import nl.hu.fed.actortemplateapp.domain.Project;
 
 public class ShowProjectContent extends AppCompatActivity {
-    private String key, analist, TAG = "ShowActors";
+    private String key, projectName, analist, TAG = "ShowActors";
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private RecyclerView recyclerView;
     private ActorsAdapter mAdapter;
+    private String helloTest = "TESTPROJECT"; //TODO fix dit
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class ShowProjectContent extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(ShowProjectContent.this, CreateActor.class);
                 i.putExtra("key", key);
+                i.putExtra("project", projectName);
                 startActivity(i);
             }
         });
@@ -60,8 +62,10 @@ public class ShowProjectContent extends AppCompatActivity {
 
                         Project project = dataSnapshot.getValue(Project.class);
 
-                        String title = project.getTitle();
-                        titleET.setText(title);
+                        projectName = project.getTitle();
+                        titleET.setText(projectName);
+
+                        helloTest = "WERKTHET";
 
                         String content = project.getDescription();
                         descriptionET.setText(content);
@@ -86,7 +90,7 @@ public class ShowProjectContent extends AppCompatActivity {
         //add a OnItemClickListener
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_actors);
 
-        mAdapter = new ActorsAdapter(key);
+        mAdapter = new ActorsAdapter(key, helloTest);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

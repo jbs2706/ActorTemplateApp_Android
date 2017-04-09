@@ -21,4 +21,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"></TextView>
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"/>
+
 </RelativeLayout>

@@ -37,13 +37,6 @@
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true" >
 
-        <EditText
-            android:text="Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/nameView"
-            android:textStyle="bold|italic" />
-
         <ImageView
             android:id="@+id/photoView"
             android:layout_width="70dp"
@@ -99,6 +92,31 @@
             tools:lines="5"
             android:layout_below="@id/phonenumberView"
             android:layout_marginTop="20dp" />
+
+        <TextView
+            android:text="Project: And Actor:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewPersonProjectActor"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#c0c0c0"
+            android:layout_below="@id/textViewPersonProjectActor"/>
+
+        <EditText
+            android:text="Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nameView"
+            android:textStyle="bold|italic"
+            android:layout_below="@+id/textViewPersonProjectActor"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
