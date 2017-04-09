@@ -81,7 +81,7 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
                 return true;
 
             case R.id.archive:
-                //startActivity(new Intent(this, SignInActivity.class));
+                startActivity(new Intent(this, Archive.class));
                 return true;
 
             case R.id.sign_out:

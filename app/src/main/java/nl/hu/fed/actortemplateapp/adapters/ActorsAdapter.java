@@ -19,10 +19,15 @@ public class ActorsAdapter extends FirebaseRecyclerAdapter<Actor, ActorsAdapter.
 
     @Override
     protected void populateViewHolder(MyViewHolder viewHolder, Actor actor, int position) {
-        viewHolder.rolename.setText(actor.getRolename());
-        viewHolder.description.setText(actor.getTaskdescription());
-        viewHolder.actor = actor;
-        viewHolder.key = getRef(position).getKey();
+        if(!actor.isArchived()){
+            viewHolder.rolename.setText(actor.getRolename());
+            viewHolder.description.setText(actor.getTaskdescription());
+            viewHolder.actor = actor;
+            viewHolder.key = getRef(position).getKey();
+        }else{
+            viewHolder.rolename.setVisibility(View.GONE);
+            viewHolder.description.setVisibility(View.GONE);
+        }
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

@@ -18,17 +18,25 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.InputStream;
 
 import nl.hu.fed.actortemplateapp.R;
+import nl.hu.fed.actortemplateapp.domain.User;
 
 public class MyAccount extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+    private DatabaseReference mFirebaseDatabaseReference;
     public static final String ANONYMOUS = "anonymous";
     private GoogleApiClient mGoogleApiClient;
     private String TAG = "MyAccount";
-    private String email, displayname, photoUrl;
+    private String email, displayname, role, photoUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +46,27 @@ public class MyAccount extends AppCompatActivity implements GoogleApiClient.OnCo
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
-        email = mFirebaseUser.getEmail();
-        displayname = mFirebaseUser.getDisplayName();
         photoUrl = mFirebaseUser.getPhotoUrl().toString();
 
-        TextView nameField = (TextView)findViewById(R.id.accountUsername);
-        TextView emailField = (TextView) findViewById(R.id.accountEmail);
+        final TextView nameField = (TextView)findViewById(R.id.accountUsername);
+        final TextView emailField = (TextView) findViewById(R.id.accountEmail);
+        final TextView roleField = (TextView) findViewById(R.id.accountRole);
 
-        nameField.setText(displayname);
-        emailField.setText(email);
+        //get user data
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        mFirebaseDatabaseReference.child("users").child(mFirebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                nameField.setText("Username: " + user.getUsername());
+                emailField.setText("Email: " + user.getEmail());
+                roleField.setText("Userrole: " + user.getUserrole());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAG, databaseError.toString());
+            }
+        });
 
         new DownloadImageTask((ImageView) findViewById(R.id.accountImage))
                 .execute(photoUrl);
@@ -87,15 +107,15 @@ public class MyAccount extends AppCompatActivity implements GoogleApiClient.OnCo
 
         protected Bitmap doInBackground(String... urls) {
             String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
+            Bitmap accountIcon = null;
             try {
                 InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
+                accountIcon = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());
                 e.printStackTrace();
             }
-            return mIcon11;
+            return accountIcon;
         }
 
         protected void onPostExecute(Bitmap result) {

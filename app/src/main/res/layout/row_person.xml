@@ -14,13 +14,15 @@
         android:layout_height="wrap_content"></TextView>
 
     <ImageView
-        android:layout_width="50dp"
+        android:layout_width="60dp"
         android:id="@+id/photo"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_alignLeft="@+id/name"
         android:layout_below="@+id/name"
         android:layout_margin="10dp"
-        />
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false" />
 
     <TextView android:text="Email"
         android:layout_width="match_parent"
@@ -45,14 +47,5 @@
         android:textSize="14dip"
         android:layout_below="@+id/function"
         android:layout_alignLeft="@+id/function"></TextView>
-
-    <TextView android:text="Notes"
-        android:layout_width="wrap_content"
-        android:id="@+id/notes"
-        android:layout_height="wrap_content"
-        android:textSize="14dip"
-        android:layout_below="@+id/phonenumber"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"></TextView>
 
 </RelativeLayout>

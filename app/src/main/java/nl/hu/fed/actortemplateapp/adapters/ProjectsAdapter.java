@@ -18,20 +18,24 @@ public class ProjectsAdapter extends FirebaseRecyclerAdapter<Project, ProjectsAd
         super(Project.class, R.layout.row_project, ProjectsAdapter.MyViewHolder.class,
                 FirebaseDatabase.getInstance().getReference().child("projects"));
         analistId = analist;
-
     }
 
     @Override
     protected void populateViewHolder(MyViewHolder viewHolder, Project project, int position) {
-        viewHolder.title.setText(project.getTitle());
-        viewHolder.description.setText(project.getDescription());
-        viewHolder.project = project;
+        if(!project.isArchived()){
+            viewHolder.title.setText(project.getTitle());
+            viewHolder.description.setText(project.getDescription());
+            viewHolder.project = project;
 
-        if(!analistId.equals(project.getAnalist())){
-            viewHolder.analist.setVisibility(View.INVISIBLE);
+            if(!analistId.equals(project.getAnalist())){
+                viewHolder.analist.setVisibility(View.INVISIBLE);
+            }
+            viewHolder.key = getRef(position).getKey();
+        }else{
+            viewHolder.title.setVisibility(View.GONE);
+            viewHolder.description.setVisibility(View.GONE);
+            viewHolder.analist.setVisibility(View.GONE);
         }
-
-        viewHolder.key = getRef(position).getKey();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

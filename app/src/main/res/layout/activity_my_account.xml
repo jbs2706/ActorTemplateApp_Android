@@ -32,7 +32,6 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/account"
             android:layout_alignLeft="@+id/myaccount"
             android:layout_below="@+id/myaccount"
             android:id="@+id/accountImage"
@@ -53,6 +52,14 @@
             android:id="@+id/accountEmail"
             android:layout_below="@id/accountUsername"
             android:layout_alignLeft="@id/accountUsername" />
+
+        <TextView
+            android:text="userrole"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/accountRole"
+            android:layout_below="@id/accountEmail"
+            android:layout_alignLeft="@id/accountEmail" />
 
         <Button
             android:text="Sign out"

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="6dip">
+
+    <TextView
+        android:text="Name"
+        android:layout_width="match_parent"
+        android:id="@+id/archivePersonName"
+        android:textSize="16dip"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"></TextView>
+
+    <TextView android:text="Email"
+        android:layout_width="match_parent"
+        android:id="@+id/archivePersonEmail"
+        android:layout_height="wrap_content"
+        android:textSize="14dip"
+        android:layout_below="@+id/archivePersonName"
+        android:layout_alignLeft="@id/archivePersonName"></TextView>
+
+    <TextView android:text="Function"
+        android:layout_width="match_parent"
+        android:id="@+id/archivePersonFunction"
+        android:layout_height="wrap_content"
+        android:textSize="14dip"
+        android:layout_below="@+id/archivePersonEmail"
+        android:layout_alignLeft="@+id/archivePersonEmail"></TextView>
+
+</RelativeLayout>

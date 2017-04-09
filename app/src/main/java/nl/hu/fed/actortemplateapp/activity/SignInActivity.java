@@ -36,9 +36,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import nl.hu.fed.actortemplateapp.R;
+import nl.hu.fed.actortemplateapp.domain.User;
 
 public class SignInActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
@@ -50,6 +58,8 @@ public class SignInActivity extends AppCompatActivity implements
 
     // Firebase instance variables
     private FirebaseAuth mFirebaseAuth;
+    private DatabaseReference mFirebaseDatabaseReference;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,11 +137,37 @@ public class SignInActivity extends AppCompatActivity implements
                             // We need an Editor object to make preference changes.
                             // All objects are from android.context.Context
 
-                            SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-                            SharedPreferences.Editor editor = userInfo.edit();
-                            editor.putString("userId", mFirebaseAuth.getCurrentUser().getUid());
-                            // Commit the edits!
-                            editor.commit();
+                            firebaseUser = mFirebaseAuth.getCurrentUser();
+
+                            //check for existing user (UUID) and create user if necessary, set role in shared preference
+                            mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+                            mFirebaseDatabaseReference.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+                                    SharedPreferences.Editor editor = userInfo.edit();
+                                    editor.putString("userId", firebaseUser.getUid());
+
+                                    if (dataSnapshot.getValue() == null) {
+                                        //new user
+                                        User newUser = new User();
+                                        newUser.setUserId(firebaseUser.getUid());
+                                        newUser.setEmail(firebaseUser.getEmail());
+                                        newUser.setUsername(firebaseUser.getDisplayName());
+                                        newUser.setUserrole("teamlid");
+                                        mFirebaseDatabaseReference.child("users").child(firebaseUser.getUid()).setValue(newUser);
+                                        editor.putString("userRole", "teamlid");
+                                    }else{
+                                        User oldUser = dataSnapshot.getValue(User.class);
+                                        editor.putString("userRole", oldUser.getUserrole());
+                                    }
+                                    editor.commit();
+                                }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    Log.e(TAG, databaseError.toString());
+                                }
+                            });
 
                             startActivity(new Intent(SignInActivity.this, ShowProjects.class));
                             finish();

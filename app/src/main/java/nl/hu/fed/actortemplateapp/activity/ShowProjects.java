@@ -8,17 +8,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.View;
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.adapters.ProjectsAdapter;
+import nl.hu.fed.actortemplateapp.domain.User;
 
 public class ShowProjects extends BaseActivity {
 
 	private String TAG = "ShowProjects";
 	private RecyclerView recyclerView;
 	private ProjectsAdapter mAdapter;
-
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,19 +35,22 @@ public class ShowProjects extends BaseActivity {
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
-		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-		fab.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Intent i = new Intent(ShowProjects.this, CreateProject.class );
-				startActivity(i);
-			}
-		});
+        SharedPreferences userInfo = getSharedPreferences("USERID", 0);
 
-		//add a OnItemClickListener
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ShowProjects.this, CreateProject.class);
+                startActivity(i);
+            }
+        });
+        if (userInfo.getString("userRole", "NotSignedIn").equals("teamlid")) {
+            fab.setVisibility(View.GONE);
+        }
+
 		recyclerView = (RecyclerView) findViewById(R.id.recycler_view_projects);
 
-		SharedPreferences userInfo = getSharedPreferences("USERID", 0);
 		mAdapter = new ProjectsAdapter(userInfo.getString("userId", "NotSignedIn"));
 		RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
 		recyclerView.setLayoutManager(mLayoutManager);
