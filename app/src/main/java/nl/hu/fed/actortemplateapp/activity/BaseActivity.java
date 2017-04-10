@@ -23,9 +23,9 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
-    private String mUsername;
-    private String mPhotoUrl;
-    private String TAG = "BaseActivity";
+    //private String mUsername;
+    //private String mPhotoUrl;
+    private static final String TAG = "BaseActivity";
 
     public static final String ANONYMOUS = "anonymous";
     private GoogleApiClient mGoogleApiClient;
@@ -34,7 +34,7 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mUsername = ANONYMOUS;
+        //mUsername = ANONYMOUS;
 
         // Initialize Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -45,9 +45,9 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
             finish();
             return;
         } else {
-            mUsername = mFirebaseUser.getDisplayName();
+            //mUsername = mFirebaseUser.getDisplayName();
             if (mFirebaseUser.getPhotoUrl() != null) {
-                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+                //mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
             }
         }
 
@@ -87,7 +87,7 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
             case R.id.sign_out:
                 mFirebaseAuth.signOut();
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-                mUsername = ANONYMOUS;
+                //mUsername = ANONYMOUS;
                 startActivity(new Intent(this, SignInActivity.class));
                 return true;
 

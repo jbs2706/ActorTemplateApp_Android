@@ -23,6 +23,7 @@ public class Archive extends AppCompatActivity {
     private ArchivePersonsAdapter archivePersonsAdapter;
     private ViewFlipper viewFlipper;
     private ToggleButton showProjects, showActors, showPersons;
+    private static final String TAG = "Archive";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

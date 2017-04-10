@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,7 +28,8 @@ import nl.hu.fed.actortemplateapp.camera.CameraFunctions;
 import nl.hu.fed.actortemplateapp.domain.Person;
 
 public class ShowPersonContent extends AppCompatActivity {
-    private String key, projectName, actorName, analist;
+    private String key, projectName, actorName, analyst;
+    private static final String TAG = "ShowPersonContent";
     private CameraFunctions cameraFunctions = new CameraFunctions();
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -45,7 +47,6 @@ public class ShowPersonContent extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("persons").child(key).addListenerForSingleValueEvent(
                 new ValueEventListener() {
-
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         EditText nameField = (EditText)findViewById(R.id.nameView);
@@ -77,10 +78,10 @@ public class ShowPersonContent extends AppCompatActivity {
 
                         projectAndActorTV.setText("Project: " + projectName + " -  Actor: " + actorName);
 
-                        analist = person.getAnalist();
+                        analyst = person.getAnalyst();
 
                         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-                        if(!analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+                        if(!analyst.equals(userInfo.getString("userId", "NotSignedIn"))) {
                             nameField.setKeyListener(null);
                             emailField.setKeyListener(null);
                             functionField.setKeyListener(null);
@@ -90,9 +91,7 @@ public class ShowPersonContent extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
+                    public void onCancelled(DatabaseError databaseError) {}
                 }
         );
         addListenerOnImageButton();
@@ -126,7 +125,7 @@ public class ShowPersonContent extends AppCompatActivity {
         int id = item.getItemId();
 
         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-        if(analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+        if(analyst.equals(userInfo.getString("userId", "NotSignedIn"))) {
             if (id == R.id.editItem) {
                 EditText nameField = (EditText) findViewById(R.id.nameView);
                 EditText emailField = (EditText) findViewById(R.id.emailView);
@@ -135,28 +134,29 @@ public class ShowPersonContent extends AppCompatActivity {
                 EditText notesField = (EditText) findViewById(R.id.notesView);
                 ImageView photoField = (ImageView) findViewById(R.id.photoView);
 
-                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.child("persons").child(key).child("name").setValue(nameField.getText().toString());
-                mDatabase.child("persons").child(key).child("email").setValue(emailField.getText().toString());
-                mDatabase.child("persons").child(key).child("function").setValue(functionField.getText().toString());
-                mDatabase.child("persons").child(key).child("phonenumber").setValue(phonenumberField.getText().toString());
-                mDatabase.child("persons").child(key).child("notes").setValue(notesField.getText().toString());
-                mDatabase.child("persons").child(key).child("photo").setValue(cameraFunctions.fromImageToString((BitmapDrawable) photoField.getDrawable()));
-
-                finish();
-                return true;
+                if(TextUtils.isEmpty(nameField.getText().toString())) {
+                    Toast.makeText(this, this.getString(R.string.emptyPersonName), Toast.LENGTH_SHORT).show();
+                }
+                else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(emailField.getText().toString()).matches()) {
+                    Toast.makeText(this, this.getString(R.string.invalidEmail), Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    mDatabase.child("persons").child(key).child("name").setValue(nameField.getText().toString());
+                    mDatabase.child("persons").child(key).child("email").setValue(emailField.getText().toString());
+                    mDatabase.child("persons").child(key).child("function").setValue(functionField.getText().toString());
+                    mDatabase.child("persons").child(key).child("phonenumber").setValue(phonenumberField.getText().toString());
+                    mDatabase.child("persons").child(key).child("notes").setValue(notesField.getText().toString());
+                    mDatabase.child("persons").child(key).child("photo").setValue(cameraFunctions.fromImageToString((BitmapDrawable) photoField.getDrawable()));
+                    finish();
+                }
             }
             if (id == R.id.archiveItem) {
-                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("persons").child(key).child("archived").setValue(true);
                 finish();
-                return true;
             }
             if (id == R.id.deleteItem) {
-                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("persons").child(key).removeValue();
                 finish();
-                return true;
             }
         } else{
             Toast.makeText(this, this.getString(R.string.analistAction), Toast.LENGTH_SHORT).show();

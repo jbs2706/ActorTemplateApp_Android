@@ -5,10 +5,12 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -17,8 +19,9 @@ import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.domain.Actor;
 
 public class CreateActor extends AppCompatActivity {
-    EditText roleET, descriptionET;
+    private EditText roleET, descriptionET;
     private DatabaseReference mDatabase;
+    private static final String TAG = "CreateActor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +29,9 @@ public class CreateActor extends AppCompatActivity {
         setContentView(R.layout.activity_create_actor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //crashed als op terug wordt gedrukt. Komt door key.
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //crashed als op terug wordt gedrukt. Komt door key. //TODO dit
         roleET = (EditText) findViewById(R.id.editTextRoleName);
         descriptionET = (EditText) findViewById(R.id.editTextDescriptionActor);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         Intent intent = getIntent();
         String projectName = intent.getStringExtra("project");
@@ -52,23 +54,25 @@ public class CreateActor extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.saveItem) {
-            Actor actor = new Actor();
-            actor.setRolename(roleET.getText().toString());
-            actor.setTaskdescription(descriptionET.getText().toString());
-            Intent intent = getIntent();
-            actor.setProjectKey(intent.getStringExtra("key"));
+            if(TextUtils.isEmpty(roleET.getText().toString())) {
+                Toast.makeText(this, this.getString(R.string.emptyActorName), Toast.LENGTH_SHORT).show();
+            }else {
+                Actor actor = new Actor();
+                actor.setRolename(roleET.getText().toString());
+                actor.setTaskdescription(descriptionET.getText().toString());
+                Intent intent = getIntent();
+                actor.setProjectKey(intent.getStringExtra("key"));
 
-            SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-            actor.setAnalist(userInfo.getString("userId", "NotSignedIn"));
+                SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+                actor.setAnalyst(userInfo.getString("userId", "NotSignedIn"));
 
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("actors").push().setValue(actor);
+                mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("actors").push().setValue(actor);
 
-            finish();
+                finish();
+            }
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

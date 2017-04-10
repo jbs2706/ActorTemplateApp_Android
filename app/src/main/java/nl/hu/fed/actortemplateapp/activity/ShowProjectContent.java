@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +25,8 @@ import nl.hu.fed.actortemplateapp.adapters.ActorsAdapter;
 import nl.hu.fed.actortemplateapp.domain.Project;
 
 public class ShowProjectContent extends AppCompatActivity {
-    private String key, projectName, analist, TAG = "ShowActors";
+    private String key, projectName, analyst;
+    private static final String TAG = "ShowActors";
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private RecyclerView recyclerView;
     private ActorsAdapter mAdapter;
@@ -70,10 +72,10 @@ public class ShowProjectContent extends AppCompatActivity {
                         String content = project.getDescription();
                         descriptionET.setText(content);
 
-                        analist = project.getAnalist();
+                        analyst = project.getAnalyst();
 
                         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-                        if(!analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+                        if(!analyst.equals(userInfo.getString("userId", "NotSignedIn"))) {
                             titleET.setKeyListener(null);
                             descriptionET.setKeyListener(null);
                             newActor.setVisibility(View.INVISIBLE);
@@ -81,9 +83,7 @@ public class ShowProjectContent extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
+                    public void onCancelled(DatabaseError databaseError) {}
                 }
         );
 
@@ -112,29 +112,26 @@ public class ShowProjectContent extends AppCompatActivity {
         int id = item.getItemId();
 
         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-        if(analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+        if(analyst.equals(userInfo.getString("userId", "NotSignedIn"))) {
             if (id == R.id.editItem) {
                 EditText titleET = (EditText) findViewById(R.id.titleView);
                 EditText descriptionET = (EditText) findViewById(R.id.descriptionView);
 
-                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.child("projects").child(key).child("title").setValue(titleET.getText().toString());
-                mDatabase.child("projects").child(key).child("description").setValue(descriptionET.getText().toString());
-
-                finish();
-                return true;
+                if(!TextUtils.isEmpty(titleET.getText().toString())) {
+                    mDatabase.child("projects").child(key).child("title").setValue(titleET.getText().toString());
+                    mDatabase.child("projects").child(key).child("description").setValue(descriptionET.getText().toString());
+                    finish();
+                }else {
+                    Toast.makeText(this, this.getString(R.string.emptyProjectName), Toast.LENGTH_SHORT).show();
+                }
             }
             if (id == R.id.archiveItem) {
-                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("projects").child(key).child("archived").setValue(true);
                 finish();
-                return true;
             }
             if (id == R.id.deleteItem) {
-                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("projects").child(key).removeValue();
                 finish();
-                return true;
             }
         } else{
             Toast.makeText(this, this.getString(R.string.analistAction), Toast.LENGTH_SHORT).show();

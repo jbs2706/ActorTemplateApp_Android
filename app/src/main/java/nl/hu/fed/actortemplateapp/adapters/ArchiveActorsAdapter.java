@@ -12,8 +12,6 @@ import nl.hu.fed.actortemplateapp.domain.Actor;
 
 public class ArchiveActorsAdapter extends FirebaseRecyclerAdapter<Actor, ArchiveActorsAdapter.MyViewHolder> {
 
-    private int selectedPos = 0;
-
     public ArchiveActorsAdapter() {
         super(Actor.class, R.layout.row_archive_actor, ArchiveActorsAdapter.MyViewHolder.class,
                 FirebaseDatabase.getInstance().getReference().child("actors").orderByChild("archived").equalTo(true));

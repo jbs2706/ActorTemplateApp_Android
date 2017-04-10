@@ -23,7 +23,7 @@
         tools:context=".activity.MyAccount">
 
         <TextView
-            android:text="My Account"
+            android:text="@string/my_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/myaccount"
@@ -38,7 +38,7 @@
             android:layout_margin="10dp"/>
 
         <TextView
-            android:text="username"
+            android:text="@string/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/accountUsername"
@@ -46,7 +46,7 @@
             android:layout_toRightOf="@id/accountImage" />
 
         <TextView
-            android:text="email"
+            android:text="@string/useremail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/accountEmail"
@@ -54,7 +54,7 @@
             android:layout_alignLeft="@id/accountUsername" />
 
         <TextView
-            android:text="userrole"
+            android:text="@string/userrole"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/accountRole"
@@ -62,7 +62,7 @@
             android:layout_alignLeft="@id/accountEmail" />
 
         <Button
-            android:text="Sign out"
+            android:text="@string/sign_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_sign_out_myaccount"

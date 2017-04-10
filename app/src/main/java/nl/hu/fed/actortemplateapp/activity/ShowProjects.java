@@ -23,7 +23,7 @@ import nl.hu.fed.actortemplateapp.domain.User;
 
 public class ShowProjects extends BaseActivity {
 
-	private String TAG = "ShowProjects";
+	private static final String TAG = "ShowProjects";
 	private RecyclerView recyclerView;
 	private ProjectsAdapter mAdapter;
 

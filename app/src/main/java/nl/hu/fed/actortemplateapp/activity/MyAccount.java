@@ -35,8 +35,8 @@ public class MyAccount extends AppCompatActivity implements GoogleApiClient.OnCo
     private DatabaseReference mFirebaseDatabaseReference;
     public static final String ANONYMOUS = "anonymous";
     private GoogleApiClient mGoogleApiClient;
-    private String TAG = "MyAccount";
-    private String email, displayname, role, photoUrl;
+    private static final String TAG = "MyAccount";
+    private String photoUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class MyAccount extends AppCompatActivity implements GoogleApiClient.OnCo
             public void onClick(View view) {
                 mFirebaseAuth.signOut();
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-                displayname = ANONYMOUS;
+                //displayname = ANONYMOUS;
                 Intent i = new Intent(MyAccount.this, SignInActivity.class);
                 startActivity(i);
                 finish();

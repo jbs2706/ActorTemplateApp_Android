@@ -4,9 +4,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -15,8 +17,9 @@ import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.domain.Project;
 
 public class CreateProject extends AppCompatActivity {
-    EditText titleET, descriptionET;
+    private EditText titleET, descriptionET;
     private DatabaseReference mDatabase;
+    private static final String TAG = "CreateProject";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +49,22 @@ public class CreateProject extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.saveItem) {
-            Project project = new Project();
-            project.setTitle(titleET.getText().toString());
-            project.setDescription(descriptionET.getText().toString());
+            if(TextUtils.isEmpty(titleET.getText().toString())) {
+                Toast.makeText(this, this.getString(R.string.emptyProjectName), Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Project project = new Project();
+                project.setTitle(titleET.getText().toString());
+                project.setDescription(descriptionET.getText().toString());
 
-            SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-            project.setAnalist(userInfo.getString("userId", "NotSignedIn"));
+                SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+                project.setAnalyst(userInfo.getString("userId", "NotSignedIn"));
 
-            DatabaseReference mDatabase =  FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("projects").push().setValue(project);
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("projects").push().setValue(project);
 
-            finish();
-
+                finish();
+            }
         }
 
         return super.onOptionsItemSelected(item);

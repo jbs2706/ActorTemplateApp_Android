@@ -29,12 +29,12 @@ public class CameraFunctions {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
-    public String fromImageToString(BitmapDrawable drawable){
-        Bitmap bitmap = drawable.getBitmap();
+    public String fromImageToString(BitmapDrawable personPhoto){
+        Bitmap photoBitmap = personPhoto.getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        byte[] byteFormat = stream.toByteArray();
-        String encodedImage = Base64.encodeToString(byteFormat, Base64.NO_WRAP);
+        photoBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] photoByteFormat = stream.toByteArray();
+        String encodedImage = Base64.encodeToString(photoByteFormat, Base64.NO_WRAP);
         return encodedImage;
     }
 
@@ -45,8 +45,8 @@ public class CameraFunctions {
         return decodedByte;
     }
 
-    public Bitmap processCapturedImage(Intent data){
-        Bitmap processedImage = (Bitmap) data.getExtras().get("data");
+    public Bitmap processCapturedImage(Intent intentData){
+        Bitmap processedImage = (Bitmap) intentData.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         processedImage.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File destination = new File(Environment.getExternalStorageDirectory(),
@@ -62,7 +62,6 @@ public class CameraFunctions {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return processedImage;
     }
 

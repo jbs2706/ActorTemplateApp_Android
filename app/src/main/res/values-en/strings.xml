@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Actor Template App</string>
+    <string name="action_settings">Settings</string>
+    <string name="actorContentAddPerson">Add person</string>
+    <string name="actorDescription">Description</string>
+    <string name="actorRoleName">Rolename</string>
+    <string name="add_project">New project</string>
+    <string name="all_projects">Projects</string>
+    <string name="analistAction">Only the analyst is allowed to take this action</string>
+    <string name="archive">Archive</string>
+    <string name="archiveButtonActors">Actors</string>
+    <string name="archiveButtonPersons">Persons</string>
+    <string name="archiveButtonProjects">Projects</string>
+    <string name="emptyActorName">The actor role cannot be empty</string>
+    <string name="emptyPersonName">The person name cannot be empty</string>
+    <string name="emptyProjectName">The project name cannot be empty</string>
+    <string name="hintPersonEmail">Enter email address</string>
+    <string name="hintPersonFunction">Enter the persons function</string>
+    <string name="hintPersonName">Enter full name</string>
+    <string name="hintPersonNotes">Enter relevant notes</string>
+    <string name="hintPersonPhonenumber">Enter phone number</string>
+    <string name="hintProjectDescription">Enter project description</string>
+    <string name="hintProjectName">Enter project title</string>
+    <string name="invalidEmail">Not a valid email address</string>
+    <string name="my_account">My account</string>
+    <string name="personEmail">Email</string>
+    <string name="personFunction">Function</string>
+    <string name="personName">Full name</string>
+    <string name="personNotes">Notes</string>
+    <string name="personPhonenumber">Phonenumber</string>
+    <string name="personPhoto">Photo</string>
+    <string name="projectContentAddActor">Add actor template</string>
+    <string name="projectDescription">Description</string>
+    <string name="projectName">Project title</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_out">Sign out</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="useremail">Email</string>
+    <string name="username">Username</string>
+    <string name="userrole">Userrol</string>
+</resources>

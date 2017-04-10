@@ -5,7 +5,7 @@ package nl.hu.fed.actortemplateapp.domain;
  */
 
 public class Person {
-    private String name, email, function, phonenumber, notes, photo, actorKey, analist;
+    private String name, email, function, phonenumber, notes, photo, actorKey, analyst;
     private boolean archived;
     public String key;
 
@@ -65,12 +65,12 @@ public class Person {
         this.actorKey = actorKey;
     }
 
-    public String getAnalist() {
-        return analist;
+    public String getAnalyst() {
+        return analyst;
     }
 
-    public void setAnalist(String analist) {
-        this.analist = analist;
+    public void setAnalyst(String analyst) {
+        this.analyst = analyst;
     }
 
     public boolean isArchived() {

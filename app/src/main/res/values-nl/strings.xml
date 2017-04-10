@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Actor Template App</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="actorContentAddPerson">Voeg persoon toe</string>
+    <string name="actorDescription">Omschrijving</string>
+    <string name="actorRoleName">Rolnaam</string>
+    <string name="add_project">Nieuw project</string>
+    <string name="all_projects">Projecten</string>
+    <string name="analistAction">Alleen de analist mag deze actie doen</string>
+    <string name="archive">Archief</string>
+    <string name="archiveButtonActors">Actoren</string>
+    <string name="archiveButtonPersons">Personen</string>
+    <string name="archiveButtonProjects">Projecten</string>
+    <string name="emptyActorName">De actorsrol mag niet leeg zijn</string>
+    <string name="emptyPersonName">De persoonsnaam mag niet leeg zijn</string>
+    <string name="emptyProjectName">De projectnaam mag niet leeg zijn</string>
+    <string name="hintPersonEmail">Vul email adres in</string>
+    <string name="hintPersonFunction">Vul de persoons functie in</string>
+    <string name="hintPersonName">Vul de volledige naam in</string>
+    <string name="hintPersonNotes">Vul relevante notities in</string>
+    <string name="hintPersonPhonenumber">Vul telefoonnummer in</string>
+    <string name="hintProjectDescription">Vul project omschrijving in</string>
+    <string name="hintProjectName">Vul project naam in</string>
+    <string name="invalidEmail">Ongeldig email adres</string>
+    <string name="my_account">Mijn account</string>
+    <string name="personEmail">Email</string>
+    <string name="personFunction">Functie</string>
+    <string name="personName">Volledige naam</string>
+    <string name="personNotes">Notities</string>
+    <string name="personPhonenumber">Telefoonnummer</string>
+    <string name="personPhoto">Foto</string>
+    <string name="projectContentAddActor">Voeg actor template toe</string>
+    <string name="projectDescription">Omschrijving</string>
+    <string name="projectName">Project titel</string>
+    <string name="sign_in">Inloggen</string>
+    <string name="sign_out">Uitloggen</string>
+    <string name="title_activity_base">Basisactiviteit</string>
+    <string name="useremail">Email</string>
+    <string name="username">Gebruikersnaam</string>
+    <string name="userrole">Gebruikersrol</string>
+</resources>

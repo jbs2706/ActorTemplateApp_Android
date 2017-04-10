@@ -12,8 +12,6 @@ import nl.hu.fed.actortemplateapp.domain.Project;
 
 public class ArchiveProjectsAdapter extends FirebaseRecyclerAdapter<Project, ArchiveProjectsAdapter.MyViewHolder> {
 
-    private int selectedPos = 0;
-
     public ArchiveProjectsAdapter() {
         super(Project.class, R.layout.row_archive_project, ArchiveProjectsAdapter.MyViewHolder.class,
                 FirebaseDatabase.getInstance().getReference().child("projects").orderByChild("archived").equalTo(true));

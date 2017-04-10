@@ -5,7 +5,7 @@ package nl.hu.fed.actortemplateapp.domain;
  */
 
 public class Actor {
-    private String rolename, taskdescription, projectKey, analist;
+    private String rolename, taskdescription, projectKey, analyst;
     private boolean archived;
     public String key;
 
@@ -41,11 +41,11 @@ public class Actor {
         return projectKey;
     }
 
-    public String getAnalist() {
-        return analist;
+    public String getAnalyst() {
+        return analyst;
     }
 
-    public void setAnalist(String analist) {
-        this.analist = analist;
+    public void setAnalyst(String analyst) {
+        this.analyst = analyst;
     }
 }

@@ -46,7 +46,6 @@
             android:layout_margin="10dp" />
 
         <EditText
-            android:text="Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/emailView"
@@ -54,7 +53,6 @@
             android:layout_alignTop="@id/photoView" />
 
         <EditText
-            android:text="Function"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/functionView"
@@ -74,7 +72,6 @@
             android:layout_height="45dp" />
 
         <EditText
-            android:text="Phonenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
@@ -85,7 +82,6 @@
             android:layout_marginTop="15dp" />
 
         <EditText
-            android:text="Notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/notesView"
@@ -94,7 +90,6 @@
             android:layout_marginTop="20dp" />
 
         <TextView
-            android:text="Project: And Actor:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textViewPersonProjectActor"
@@ -109,7 +104,6 @@
             android:layout_below="@id/textViewPersonProjectActor"/>
 
         <EditText
-            android:text="Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nameView"

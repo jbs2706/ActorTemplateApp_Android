@@ -12,12 +12,12 @@ import nl.hu.fed.actortemplateapp.activity.ShowProjectContent;
 import nl.hu.fed.actortemplateapp.domain.Project;
 
 public class ProjectsAdapter extends FirebaseRecyclerAdapter<Project, ProjectsAdapter.MyViewHolder> {
-    private String analistId;
+    private String analystId;
 
-    public ProjectsAdapter(String analist) {
+    public ProjectsAdapter(String analyst) {
         super(Project.class, R.layout.row_project, ProjectsAdapter.MyViewHolder.class,
                 FirebaseDatabase.getInstance().getReference().child("projects"));
-        analistId = analist;
+        analystId = analyst;
     }
 
     @Override
@@ -27,20 +27,20 @@ public class ProjectsAdapter extends FirebaseRecyclerAdapter<Project, ProjectsAd
             viewHolder.description.setText(project.getDescription());
             viewHolder.project = project;
 
-            if(!analistId.equals(project.getAnalist())){
-                viewHolder.analist.setVisibility(View.INVISIBLE);
+            if(!analystId.equals(project.getAnalyst())){
+                viewHolder.analyst.setVisibility(View.INVISIBLE);
             }
             viewHolder.key = getRef(position).getKey();
         }else{
             viewHolder.title.setVisibility(View.GONE);
             viewHolder.description.setVisibility(View.GONE);
-            viewHolder.analist.setVisibility(View.GONE);
+            viewHolder.analyst.setVisibility(View.GONE);
         }
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView title, description;
-        public ImageView analist;
+        public ImageView analyst;
         public Project project;
         public String key;
 
@@ -48,7 +48,7 @@ public class ProjectsAdapter extends FirebaseRecyclerAdapter<Project, ProjectsAd
             super(view);
             title = (TextView) view.findViewById(R.id.title);
             description = (TextView) view.findViewById(R.id.descriptionProject);
-            analist = (ImageView) view.findViewById(R.id.analistProject);
+            analyst = (ImageView) view.findViewById(R.id.analystProject);
             view.setOnClickListener(this);
         }
 

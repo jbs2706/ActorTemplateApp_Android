@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,14 +23,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.adapters.PersonsAdapter;
 import nl.hu.fed.actortemplateapp.domain.Actor;
 
 public class ShowActorContent extends AppCompatActivity {
-    private String key, projectName, actorName, analist, TAG = "ShowPersons";
+    private String key, projectName, actorName, analyst;
+    private static final String TAG = "ShowActorContent";
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private RecyclerView recyclerView;
     private PersonsAdapter mAdapter;
@@ -76,10 +76,10 @@ public class ShowActorContent extends AppCompatActivity {
 
                         projectTV.setText("Project: " + projectName);
 
-                        analist = actor.getAnalist();
+                        analyst = actor.getAnalyst();
 
                         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-                        if (!analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+                        if (!analyst.equals(userInfo.getString("userId", "NotSignedIn"))) {
                             rolenameET.setKeyListener(null);
                             taskdescriptionET.setKeyListener(null);
                             newPerson.setVisibility(View.INVISIBLE);
@@ -87,12 +87,9 @@ public class ShowActorContent extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
+                    public void onCancelled(DatabaseError databaseError) {}
                 }
         );
-
         //add a OnItemClickListener
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_persons);
 
@@ -101,7 +98,6 @@ public class ShowActorContent extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
-
     }
 
 
@@ -120,28 +116,26 @@ public class ShowActorContent extends AppCompatActivity {
         int id = item.getItemId();
 
         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-        if(analist.equals(userInfo.getString("userId", "NotSignedIn"))) {
+        if(analyst.equals(userInfo.getString("userId", "NotSignedIn"))) {
             if (id == R.id.editItem) {
                 EditText rolenameET = (EditText) findViewById(R.id.rolenameView);
                 EditText taskdescriptionET = (EditText) findViewById(R.id.taskdescriptionView);
 
-                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.child("actors").child(key).child("rolename").setValue(rolenameET.getText().toString());
-                mDatabase.child("actors").child(key).child("taskdescription").setValue(taskdescriptionET.getText().toString());
-                finish();
-                return true;
+                if(!TextUtils.isEmpty(rolenameET.getText().toString())) {
+                    mDatabase.child("actors").child(key).child("rolename").setValue(rolenameET.getText().toString());
+                    mDatabase.child("actors").child(key).child("taskdescription").setValue(taskdescriptionET.getText().toString());
+                    finish();
+                }else {
+                    Toast.makeText(this, this.getString(R.string.emptyActorName), Toast.LENGTH_SHORT).show();
+                }
             }
             if (id == R.id.archiveItem) {
-                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("actors").child(key).child("archived").setValue(true);
                 finish();
-                return true;
             }
             if (id == R.id.deleteItem) {
-                //DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("actors").child(key).removeValue();
                 finish();
-                return true;
             }
         } else{
             Toast.makeText(this, this.getString(R.string.analistAction), Toast.LENGTH_SHORT).show();

@@ -36,7 +36,6 @@
         android:focusableInTouchMode="true" >
 
         <EditText
-            android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rolenameView"
@@ -47,7 +46,6 @@
             android:layout_marginTop="20dp" />
 
         <EditText
-            android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/taskdescriptionView"
@@ -68,7 +66,7 @@
             android:layout_above="@+id/button_new_person" />
 
         <Button
-            android:text="Nieuw persoon toevoegen"
+            android:text="@string/actorContentAddPerson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_new_person"
@@ -78,7 +76,7 @@
             android:layout_centerHorizontal="true" />
 
         <TextView
-            android:text="Project:"
+            android:text="@string/actorContentProject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textViewActorProject"

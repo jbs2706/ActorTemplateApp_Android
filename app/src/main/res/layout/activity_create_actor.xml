@@ -29,7 +29,6 @@
         android:orientation="vertical" >
 
         <TextView
-            android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textViewCreateActorProject" />
@@ -40,7 +39,7 @@
             android:background="#c0c0c0"
             android:layout_below="@id/textViewCreateActorProject"/>
 
-        <TextView android:text="Rolename"
+        <TextView android:text="@string/actorRoleName"
             android:id="@+id/textViewRoleName"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -50,11 +49,11 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:id="@+id/editTextRoleName"
-            android:hint="enter rolename">
+            android:hint="@string/hintActorRoleName">
         </EditText>
 
         <TextView
-            android:text="Description"
+            android:text="@string/actorDescription"
             android:id="@+id/textViewDescription"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
@@ -65,7 +64,7 @@
             android:layout_height="200dp"
             android:gravity="top"
             android:inputType="none"
-            android:hint="enter description">
+            android:hint="@string/hintActorDescription">
         </EditText>
 
     </LinearLayout>

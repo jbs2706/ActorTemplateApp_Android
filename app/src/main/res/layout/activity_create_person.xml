@@ -29,7 +29,6 @@
         android:orientation="vertical" >
 
         <TextView
-            android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textViewCreatePersonActorProject" />
@@ -41,13 +40,10 @@
             android:layout_below="@id/textViewCreatePersonActorProject"/>
 
         <TextView
-            android:text="Photo"
+            android:text="@string/personPhoto"
             android:id="@+id/textViewPhoto"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            >
-        </TextView>
-
+            android:layout_width="wrap_content" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
@@ -77,54 +73,46 @@
 
         </LinearLayout>
 
-        <TextView android:text="Full name"
+        <TextView android:text="@string/personName"
             android:id="@+id/textViewFullName"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            >
-        </TextView>
+            android:layout_width="match_parent" />
+
         <EditText
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:id="@+id/editTextName"
-            android:hint="enter full name">
-        </EditText>
+            android:hint="@string/hintPersonName"/>
 
         <TextView
-            android:text="Email"
+            android:text="@string/personEmail"
             android:id="@+id/textViewEmail"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            >
-        </TextView>
+            android:layout_width="match_parent"/>
+
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="enter email address">
-        </EditText>
+            android:hint="@string/hintPersonEmail"/>
 
         <TextView
-            android:text="Function"
+            android:text="@string/personFunction"
             android:id="@+id/textViewFunction"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            >
-        </TextView>
+            android:layout_width="match_parent"/>
+
         <EditText
             android:id="@+id/editTextFunction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="enter the persons function">
-        </EditText>
+            android:hint="@string/hintPersonFunction"/>
 
         <TextView
-            android:text="Phonenumber"
+            android:text="@string/personPhonenumber"
             android:id="@+id/textViewPhonenumber"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            >
-        </TextView>
+            android:layout_width="match_parent"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -144,26 +132,23 @@
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:ems="10"
-                android:hint="enter phone number">
-            </EditText>
+                android:hint="@string/hintPersonPhonenumber"/>
 
         </LinearLayout>
 
         <TextView
-            android:text="Notes"
+            android:text="@string/personNotes"
             android:id="@+id/textViewNotes"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            >
-        </TextView>
+            android:layout_width="match_parent"/>
+
         <EditText
             android:id="@+id/editTextNotes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top"
             android:inputType="none"
-            android:hint="enter relevant notes">
-        </EditText>
+            android:hint="@string/hintPersonNotes"/>
 
     </LinearLayout>
 

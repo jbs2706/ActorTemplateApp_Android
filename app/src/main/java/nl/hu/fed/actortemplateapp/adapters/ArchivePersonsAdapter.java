@@ -12,8 +12,6 @@ import nl.hu.fed.actortemplateapp.domain.Person;
 
 public class ArchivePersonsAdapter extends FirebaseRecyclerAdapter<Person, ArchivePersonsAdapter.MyViewHolder> {
 
-    private int selectedPos = 0;
-
     public ArchivePersonsAdapter() {
         super(Person.class, R.layout.row_archive_person, ArchivePersonsAdapter.MyViewHolder.class,
                 FirebaseDatabase.getInstance().getReference().child("persons").orderByChild("archived").equalTo(true));

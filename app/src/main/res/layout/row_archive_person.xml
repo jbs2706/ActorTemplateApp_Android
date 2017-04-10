@@ -6,28 +6,27 @@
     android:padding="6dip">
 
     <TextView
-        android:text="Name"
         android:layout_width="match_parent"
         android:id="@+id/archivePersonName"
         android:textSize="16dip"
         android:textStyle="bold"
-        android:layout_height="wrap_content"></TextView>
+        android:layout_height="wrap_content"/>
 
-    <TextView android:text="Email"
+    <TextView
         android:layout_width="match_parent"
         android:id="@+id/archivePersonEmail"
         android:layout_height="wrap_content"
         android:textSize="14dip"
         android:layout_below="@+id/archivePersonName"
-        android:layout_alignLeft="@id/archivePersonName"></TextView>
+        android:layout_alignLeft="@id/archivePersonName"/>
 
-    <TextView android:text="Function"
+    <TextView
         android:layout_width="match_parent"
         android:id="@+id/archivePersonFunction"
         android:layout_height="wrap_content"
         android:textSize="14dip"
         android:layout_below="@+id/archivePersonEmail"
-        android:layout_alignLeft="@+id/archivePersonEmail"></TextView>
+        android:layout_alignLeft="@+id/archivePersonEmail"/>
 
     <View
         android:layout_width="fill_parent"

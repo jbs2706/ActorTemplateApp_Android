@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,12 +28,13 @@ import nl.hu.fed.actortemplateapp.camera.CameraFunctions;
 import nl.hu.fed.actortemplateapp.domain.Person;
 
 public class CreatePerson extends AppCompatActivity {
-    EditText nameET, emailET, functionET, phonenumberET, notesET;
+    private EditText nameET, emailET, functionET, phonenumberET, notesET;
     private static final int SELECT_PHOTO = 100, TAKE_PHOTO = 200;
-    ImageView photoIV;
-    ImageButton imageButtonCamera, imageButtonGallery;
+    private ImageView photoIV;
+    private ImageButton imageButtonCamera, imageButtonGallery;
     private CameraFunctions cameraFunctions = new CameraFunctions();
     private DatabaseReference mDatabase;
+    private static final String TAG = "CreatePerson";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,17 +86,16 @@ public class CreatePerson extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, TAKE_PHOTO);
             }
         });
-
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onActivityResult(int requestCode, int resultCode, Intent intentData) {
+        super.onActivityResult(requestCode, resultCode, intentData);
         if (requestCode == SELECT_PHOTO && resultCode == Activity.RESULT_OK) {
             Bitmap processedImage = null;
-            if (data != null) {
+            if (intentData != null) {
                 try {
-                    processedImage = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+                    processedImage = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), intentData.getData());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -102,7 +104,7 @@ public class CreatePerson extends AppCompatActivity {
         }
         if (requestCode == TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
             cameraFunctions.verifyStoragePermissions(this);
-            photoIV.setImageBitmap(cameraFunctions.processCapturedImage(data));
+            photoIV.setImageBitmap(cameraFunctions.processCapturedImage(intentData));
         }
     }
 
@@ -122,30 +124,37 @@ public class CreatePerson extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.saveItem) {
-            Person person = new Person();
-            person.setName(nameET.getText().toString());
-            person.setEmail(emailET.getText().toString());
-            person.setFunction(functionET.getText().toString());
-            person.setPhonenumber(phonenumberET.getText().toString());
-            person.setNotes(notesET.getText().toString());
-
-            if(photoIV.getDrawable() == null) {
-                person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.defaultpersonphoto, null)));
+            if(TextUtils.isEmpty(nameET.getText().toString())) {
+                Toast.makeText(this, this.getString(R.string.emptyPersonName), Toast.LENGTH_SHORT).show();
             }
-            else{
-                person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) photoIV.getDrawable()));
+            else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(emailET.getText().toString()).matches()) {
+                Toast.makeText(this, this.getString(R.string.invalidEmail), Toast.LENGTH_SHORT).show();
             }
+            else {
+                Person person = new Person();
+                person.setName(nameET.getText().toString());
+                person.setEmail(emailET.getText().toString());
+                person.setFunction(functionET.getText().toString());
+                person.setPhonenumber(phonenumberET.getText().toString());
+                person.setNotes(notesET.getText().toString());
 
-            Intent intent = getIntent();
-            person.setActorKey(intent.getStringExtra("key"));
+                if (photoIV.getDrawable() == null) {
+                    person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.defaultpersonphoto, null)));
+                } else {
+                    person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) photoIV.getDrawable()));
+                }
 
-            SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-            person.setAnalist(userInfo.getString("userId", "NotSignedIn"));
+                Intent intent = getIntent();
+                person.setActorKey(intent.getStringExtra("key"));
 
-            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("persons").push().setValue(person);
+                SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+                person.setAnalyst(userInfo.getString("userId", "NotSignedIn"));
 
-            finish();
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("persons").push().setValue(person);
+
+                finish();
+            }
         }
 
         return super.onOptionsItemSelected(item);
