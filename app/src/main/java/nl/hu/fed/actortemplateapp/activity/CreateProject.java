@@ -58,7 +58,7 @@ public class CreateProject extends AppCompatActivity {
                 project.setDescription(descriptionET.getText().toString());
 
                 SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-                project.setAnalyst(userInfo.getString("userId", "NotSignedIn"));
+                project.setAnalist(userInfo.getString("userId", "NotSignedIn"));
 
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("projects").push().setValue(project);

@@ -28,17 +28,18 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-        <activity android:name=".activity.SignInActivity">
+        <activity
+            android:name=".activity.SignInActivity"
+            android:label="@string/sign_in">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
 
         <activity
             android:name=".activity.ShowProjectContent"
-            android:label="Project detail"
+            android:label="@string/manifestShowProjectContent"
             android:parentActivityName=".activity.ShowAllProjects"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -48,7 +49,7 @@
 
         <activity
             android:name=".activity.CreateProject"
-            android:label="New Project"
+            android:label="@string/manifestCreateProject"
             android:parentActivityName=".activity.ShowAllProjects"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -58,7 +59,7 @@
 
         <activity
             android:name=".activity.CreateActor"
-            android:label="New Actor"
+            android:label="@string/manifestCreateActor"
             android:parentActivityName=".activity.ShowProjectContent"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -73,7 +74,7 @@
 
         <activity
             android:name=".activity.ShowActorContent"
-            android:label="Actor detail"
+            android:label="@string/manifestShowActorContent"
             android:parentActivityName=".activity.ShowProjectContent"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -83,7 +84,7 @@
 
         <activity
             android:name=".activity.ShowPersonContent"
-            android:label="Person detail"
+            android:label="@string/manifestShowPersonContent"
             android:parentActivityName=".activity.ShowActorContent"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -93,7 +94,7 @@
 
         <activity
             android:name=".activity.CreatePerson"
-            android:label="New Person"
+            android:label="@string/manifestCreatePerson"
             android:parentActivityName=".activity.ShowActorContent"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -103,7 +104,7 @@
 
         <activity
             android:name=".activity.MyAccount"
-            android:label="My Account"
+            android:label="@string/manifestMyAccount"
             android:parentActivityName=".activity.ShowAllProjects"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -112,7 +113,7 @@
         </activity>
 
         <activity android:name=".activity.Archive"
-            android:label="Archive"
+            android:label="@string/manifestArchive"
             android:parentActivityName=".activity.ShowAllProjects"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

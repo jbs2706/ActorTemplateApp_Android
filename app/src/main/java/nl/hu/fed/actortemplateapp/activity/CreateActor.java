@@ -64,7 +64,7 @@ public class CreateActor extends AppCompatActivity {
                 actor.setProjectKey(intent.getStringExtra("key"));
 
                 SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-                actor.setAnalyst(userInfo.getString("userId", "NotSignedIn"));
+                actor.setAnalist(userInfo.getString("userId", "NotSignedIn"));
 
                 mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("actors").push().setValue(actor);

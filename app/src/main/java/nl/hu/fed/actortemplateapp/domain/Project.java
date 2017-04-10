@@ -2,7 +2,7 @@ package nl.hu.fed.actortemplateapp.domain;
 
 public class Project {
 
-    private String title, description, analyst;
+    private String title, description, analist;
     private boolean archived;
     public String key;
 
@@ -30,11 +30,11 @@ public class Project {
         this.archived = archived;
     }
 
-    public String getAnalyst() {
-        return analyst;
+    public String getAnalist() {
+        return analist;
     }
 
-    public void setAnalyst(String analyst) {
-        this.analyst = analyst;
+    public void setAnalist(String analist) {
+        this.analist = analist;
     }
 }

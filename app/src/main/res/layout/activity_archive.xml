@@ -22,7 +22,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/aArchive_relativeLayout">
 
         <ViewFlipper
             android:id="@+id/aArchive_archiveViewflipper"
@@ -34,15 +35,6 @@
             android:layout_toLeftOf="@+id/aArchive_showProjectArchiveTb"
             android:layout_toStartOf="@+id/aArchive_showProjectArchiveTb"
             android:layout_marginTop="60dp">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/aArchive_personArchiveRv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_toLeftOf="@+id/aArchive_showProjectArchiveTb"
-                android:layout_toStartOf="@+id/aArchive_showProjectArchiveTb" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/aArchive_projectArchiveRv"
@@ -62,11 +54,19 @@
                 android:layout_toLeftOf="@+id/aArchive_showProjectArchiveTb"
                 android:layout_toStartOf="@+id/aArchive_showProjectArchiveTb" />
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/aArchive_personArchiveRv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/aArchive_showProjectArchiveTb"
+                android:layout_toStartOf="@+id/aArchive_showProjectArchiveTb" />
+
         </ViewFlipper>
 
         <ToggleButton
             android:id="@+id/aArchive_showPersonArchiveTb"
-            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:checked="false"
             android:text="@string/archiveButtonPersons"
@@ -75,11 +75,11 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="221dp" />
+            android:layout_marginBottom="221dp"
+            android:layout_width="100dp" />
 
         <ToggleButton
             android:id="@+id/aArchive_showActorArchiveTb"
-            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:checked="false"
             android:text="@string/archiveButtonActors"
@@ -88,11 +88,11 @@
             android:layout_above="@+id/aArchive_showPersonArchiveTb"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_width="100dp" />
 
         <ToggleButton
             android:id="@+id/aArchive_showProjectArchiveTb"
-            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:text="@string/archiveButtonProjects"
             android:textOff="@string/archiveButtonProjects"
@@ -101,7 +101,8 @@
             android:layout_marginBottom="10dp"
             android:layout_above="@+id/aArchive_showActorArchiveTb"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_width="100dp" />
 
     </RelativeLayout>
 
@@ -112,7 +113,7 @@
         app:fabSize="normal"
         app:srcCompat="@android:drawable/ic_menu_delete"
         android:id="@+id/aArchive_deleteItemFab"
-        app:layout_anchor="@+id/relativeLayout"
+        app:layout_anchor="@+id/aArchive_relativeLayout"
         app:layout_anchorGravity="bottom|right"
         android:layout_gravity="top|left" />
 
@@ -123,7 +124,7 @@
         app:fabSize="normal"
         app:srcCompat="@android:drawable/ic_menu_set_as"
         android:id="@+id/aArchive_restoreItemFab"
-        app:layout_anchor="@+id/relativeLayout"
+        app:layout_anchor="@+id/aArchive_relativeLayout"
         app:layout_anchorGravity="bottom|center_horizontal"
         android:layout_gravity="top|right" />
 

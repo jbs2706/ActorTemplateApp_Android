@@ -149,7 +149,7 @@ public class CreatePerson extends AppCompatActivity {
                 person.setActorKey(intent.getStringExtra("key"));
 
                 SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-                person.setAnalyst(userInfo.getString("userId", "NotSignedIn"));
+                person.setAnalist(userInfo.getString("userId", "NotSignedIn"));
 
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("persons").push().setValue(person);

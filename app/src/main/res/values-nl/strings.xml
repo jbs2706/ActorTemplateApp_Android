@@ -7,7 +7,7 @@
     <string name="actorRoleName">Rolnaam</string>
     <string name="add_project">Nieuw project</string>
     <string name="all_projects">Projecten</string>
-    <string name="analistAction">Alleen de analist mag deze actie doen</string>
+    <string name="analystAction">Alleen de analist mag deze actie doen</string>
     <string name="archive">Archief</string>
     <string name="archiveButtonActors">Actoren</string>
     <string name="archiveButtonPersons">Personen</string>

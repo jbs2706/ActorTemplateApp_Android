@@ -29,7 +29,7 @@ public class ProjectsAdapter extends FirebaseRecyclerAdapter<Project, ProjectsAd
             viewHolder.description.setText(project.getDescription());
             viewHolder.project = project;
             //als user niet de analist is, editicoon niet tonen
-            if(!analystId.equals(project.getAnalyst())){
+            if(!analystId.equals(project.getAnalist())){
                 viewHolder.analyst.setVisibility(View.INVISIBLE);
             }
             viewHolder.key = getRef(position).getKey();

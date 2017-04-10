@@ -74,7 +74,7 @@ public class ShowProjectContent extends AppCompatActivity {
                         String content = project.getDescription();
                         descriptionET.setText(content);
 
-                        analyst = project.getAnalyst();
+                        analyst = project.getAnalist();
                         //als user niet de analist is, niet de optie tonen om een actor toe te voegen
                         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
                         if(!analyst.equals(userInfo.getString("userId", "NotSignedIn"))) {
@@ -135,7 +135,7 @@ public class ShowProjectContent extends AppCompatActivity {
                 finish();
             }
         } else{
-            Toast.makeText(this, this.getString(R.string.analistAction), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, this.getString(R.string.analystAction), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -78,7 +78,7 @@ public class ShowPersonContent extends AppCompatActivity {
 
                         projectAndActorTV.setText("Project: " + projectName + " -  Actor: " + actorName);
 
-                        analyst = person.getAnalyst();
+                        analyst = person.getAnalist();
 
                         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
                         if(!analyst.equals(userInfo.getString("userId", "NotSignedIn"))) {
@@ -159,7 +159,7 @@ public class ShowPersonContent extends AppCompatActivity {
                 finish();
             }
         } else{
-            Toast.makeText(this, this.getString(R.string.analistAction), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, this.getString(R.string.analystAction), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
