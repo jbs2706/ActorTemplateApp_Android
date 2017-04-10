@@ -5,9 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Logger;
 
 import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.activity.ShowPersonContent;
@@ -19,11 +19,11 @@ public class PersonsAdapter extends FirebaseRecyclerAdapter<Person, PersonsAdapt
     private CameraFunctions cameraFunctions = new CameraFunctions();
     private static String projectName, actorName;
 
-    public PersonsAdapter(String actorKey, String project, String actor) {
+    public PersonsAdapter(String actorKey, String projectN, String actorN) {
         super(Person.class, R.layout.row_person, PersonsAdapter.MyViewHolder.class,
                 FirebaseDatabase.getInstance().getReference().child("persons").orderByChild("actorKey").equalTo(actorKey));
-        projectName = project;
-        actorName = actor;
+        projectName = projectN; //deze parameters worden in het scherm gebruikt
+        actorName = actorN;//deze parameters worden in het scherm gebruikt
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PersonsAdapter extends FirebaseRecyclerAdapter<Person, PersonsAdapt
             viewHolder.photo.setImageBitmap(cameraFunctions.fromStringToImage(person.getPhoto()));
             viewHolder.person = person;
             viewHolder.key = getRef(position).getKey();
-        }else{
+        }else{ //als person gearchiveerd is, niet tonen
             viewHolder.name.setVisibility(View.GONE);
             viewHolder.email.setVisibility(View.GONE);
             viewHolder.function.setVisibility(View.GONE);
@@ -65,8 +65,8 @@ public class PersonsAdapter extends FirebaseRecyclerAdapter<Person, PersonsAdapt
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), ShowPersonContent.class);
             intent.putExtra("key", key);
-            intent.putExtra("project", projectName);
-            intent.putExtra("actor", actorName);
+            intent.putExtra("project", projectName); //geef door aan volgende intent
+            intent.putExtra("actor", actorName); //zodat ze in het scherm getoond kunnen worden
             v.getContext().startActivity(intent);
         }
     }

@@ -10,10 +10,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.domain.Person;
 
-public class ArchivePersonsAdapter extends FirebaseRecyclerAdapter<Person, ArchivePersonsAdapter.MyViewHolder> {
+public class ArchivedPersonsAdapter extends FirebaseRecyclerAdapter<Person, ArchivedPersonsAdapter.MyViewHolder> {
 
-    public ArchivePersonsAdapter() {
-        super(Person.class, R.layout.row_archive_person, ArchivePersonsAdapter.MyViewHolder.class,
+    public ArchivedPersonsAdapter() { //haalt alle persons op waar archived true is
+        super(Person.class, R.layout.row_archived_person, ArchivedPersonsAdapter.MyViewHolder.class,
                 FirebaseDatabase.getInstance().getReference().child("persons").orderByChild("archived").equalTo(true));
     }
 

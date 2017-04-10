@@ -22,7 +22,9 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.IOException;
+
 import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.camera.CameraFunctions;
 import nl.hu.fed.actortemplateapp.domain.Person;
@@ -53,19 +55,18 @@ public class CreatePerson extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         Intent intent = getIntent();
-        String projectName = intent.getStringExtra("project");
+        String projectName = intent.getStringExtra("project"); //worden bovenaan scherm getoond
         String actorName = intent.getStringExtra("actor");
-
         TextView projectAndActorTV = (TextView) findViewById(R.id.textViewCreatePersonActorProject);
         projectAndActorTV.setText("Project: " + projectName + " -  Actor: " + actorName);
 
-        addListenerOnImageButtons();
+        addListenerOnImageButtons(); //make imagebutton do something
     }
 
     public void addListenerOnImageButtons() {
         imageButtonGallery = (ImageButton) findViewById(R.id.imageGallery);
         imageButtonCamera = (ImageButton) findViewById(R.id.imageCamera);
-
+        //open de gallery
         imageButtonGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -78,7 +79,7 @@ public class CreatePerson extends AppCompatActivity {
                 startActivityForResult(pickIntent, SELECT_PHOTO);
             }
         });
-
+        //open de camera
         imageButtonCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -94,7 +95,7 @@ public class CreatePerson extends AppCompatActivity {
         if (requestCode == SELECT_PHOTO && resultCode == Activity.RESULT_OK) {
             Bitmap processedImage = null;
             if (intentData != null) {
-                try {
+                try { //haal de geselecteerde foto op
                     processedImage = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), intentData.getData());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -103,7 +104,7 @@ public class CreatePerson extends AppCompatActivity {
             photoIV.setImageBitmap(processedImage);
         }
         if (requestCode == TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
-            cameraFunctions.verifyStoragePermissions(this);
+            cameraFunctions.verifyStoragePermissions(this); //proces de genomen foto
             photoIV.setImageBitmap(cameraFunctions.processCapturedImage(intentData));
         }
     }
@@ -124,9 +125,9 @@ public class CreatePerson extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.saveItem) {
-            if(TextUtils.isEmpty(nameET.getText().toString())) {
+            if(TextUtils.isEmpty(nameET.getText().toString())) { //valideer naam
                 Toast.makeText(this, this.getString(R.string.emptyPersonName), Toast.LENGTH_SHORT).show();
-            }
+            } //valideer email
             else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(emailET.getText().toString()).matches()) {
                 Toast.makeText(this, this.getString(R.string.invalidEmail), Toast.LENGTH_SHORT).show();
             }
@@ -138,7 +139,7 @@ public class CreatePerson extends AppCompatActivity {
                 person.setPhonenumber(phonenumberET.getText().toString());
                 person.setNotes(notesET.getText().toString());
 
-                if (photoIV.getDrawable() == null) {
+                if (photoIV.getDrawable() == null) { //als er geen foto genomen of geselecteerd is, standaard image gebruiken
                     person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.defaultpersonphoto, null)));
                 } else {
                     person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) photoIV.getDrawable()));

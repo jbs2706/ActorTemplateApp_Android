@@ -134,9 +134,9 @@ public class ShowPersonContent extends AppCompatActivity {
                 EditText notesField = (EditText) findViewById(R.id.notesView);
                 ImageView photoField = (ImageView) findViewById(R.id.photoView);
 
-                if(TextUtils.isEmpty(nameField.getText().toString())) {
+                if(TextUtils.isEmpty(nameField.getText().toString())) { //valideer naam
                     Toast.makeText(this, this.getString(R.string.emptyPersonName), Toast.LENGTH_SHORT).show();
-                }
+                }  //valideer email
                 else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(emailField.getText().toString()).matches()) {
                     Toast.makeText(this, this.getString(R.string.invalidEmail), Toast.LENGTH_SHORT).show();
                 }

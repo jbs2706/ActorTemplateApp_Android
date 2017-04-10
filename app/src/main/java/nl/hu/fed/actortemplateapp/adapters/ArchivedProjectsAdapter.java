@@ -10,10 +10,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.domain.Project;
 
-public class ArchiveProjectsAdapter extends FirebaseRecyclerAdapter<Project, ArchiveProjectsAdapter.MyViewHolder> {
+public class ArchivedProjectsAdapter extends FirebaseRecyclerAdapter<Project, ArchivedProjectsAdapter.MyViewHolder> {
 
-    public ArchiveProjectsAdapter() {
-        super(Project.class, R.layout.row_archive_project, ArchiveProjectsAdapter.MyViewHolder.class,
+    public ArchivedProjectsAdapter() { // haalt alle projects op waar archived true is
+        super(Project.class, R.layout.row_archived_project, ArchivedProjectsAdapter.MyViewHolder.class,
                 FirebaseDatabase.getInstance().getReference().child("projects").orderByChild("archived").equalTo(true));
     }
 

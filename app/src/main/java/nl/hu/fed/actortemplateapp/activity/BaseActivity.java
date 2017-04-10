@@ -17,7 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import nl.hu.fed.actortemplateapp.R;
-
+//dit is een basisactivity waarin het basismenu geinitialiseerd wordt. Andere activities kunnen deze extenden.
+//op deze manier hoeft het menu niet in elke activity geinitialiseerd te worden
 public class BaseActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     private FirebaseAuth mFirebaseAuth;
@@ -65,7 +66,7 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
         return true;
     }
 
-    @Override
+    @Override //init het basismenu
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.account:
@@ -73,7 +74,7 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
                 return true;
 
             case R.id.all_projects:
-                startActivity(new Intent(this, ShowProjects.class));
+                startActivity(new Intent(this, ShowAllProjects.class));
                 return true;
 
             case R.id.add_project:
@@ -89,10 +90,6 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient);
                 //mUsername = ANONYMOUS;
                 startActivity(new Intent(this, SignInActivity.class));
-                return true;
-
-            case R.id.settings:
-                //startActivity(new Intent(this, SignInActivity.class));
                 return true;
 
             default:

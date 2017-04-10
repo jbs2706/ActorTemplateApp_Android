@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import nl.hu.fed.actortemplateapp.R;
 import android.widget.TextView;
+
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.FirebaseDatabase;
+
+import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.activity.ShowProjectContent;
 import nl.hu.fed.actortemplateapp.domain.Project;
 
@@ -15,8 +17,8 @@ public class ProjectsAdapter extends FirebaseRecyclerAdapter<Project, ProjectsAd
     private String analystId;
 
     public ProjectsAdapter(String analyst) {
-        super(Project.class, R.layout.row_project, ProjectsAdapter.MyViewHolder.class,
-                FirebaseDatabase.getInstance().getReference().child("projects"));
+        super(Project.class, R.layout.row_project, ProjectsAdapter.MyViewHolder.class, //alleen niet gearchiveerde projecten tonen
+                FirebaseDatabase.getInstance().getReference().child("projects").orderByChild("archived").equalTo(false));
         analystId = analyst;
     }
 
@@ -26,15 +28,11 @@ public class ProjectsAdapter extends FirebaseRecyclerAdapter<Project, ProjectsAd
             viewHolder.title.setText(project.getTitle());
             viewHolder.description.setText(project.getDescription());
             viewHolder.project = project;
-
+            //als user niet de analist is, editicoon niet tonen
             if(!analystId.equals(project.getAnalyst())){
                 viewHolder.analyst.setVisibility(View.INVISIBLE);
             }
             viewHolder.key = getRef(position).getKey();
-        }else{
-            viewHolder.title.setVisibility(View.GONE);
-            viewHolder.description.setVisibility(View.GONE);
-            viewHolder.analyst.setVisibility(View.GONE);
         }
     }
 

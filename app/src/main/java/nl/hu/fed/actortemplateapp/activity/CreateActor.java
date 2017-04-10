@@ -2,8 +2,8 @@ package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -34,8 +34,7 @@ public class CreateActor extends AppCompatActivity {
         descriptionET = (EditText) findViewById(R.id.editTextDescriptionActor);
 
         Intent intent = getIntent();
-        String projectName = intent.getStringExtra("project");
-
+        String projectName = intent.getStringExtra("project"); //wordt bovenaan scherm getoond
         TextView projectTV = (TextView) findViewById(R.id.textViewCreateActorProject);
         projectTV.setText("Project: " + projectName);
     }
@@ -54,7 +53,7 @@ public class CreateActor extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.saveItem) {
+        if (id == R.id.saveItem) { //valideer actornaam
             if(TextUtils.isEmpty(roleET.getText().toString())) {
                 Toast.makeText(this, this.getString(R.string.emptyActorName), Toast.LENGTH_SHORT).show();
             }else {

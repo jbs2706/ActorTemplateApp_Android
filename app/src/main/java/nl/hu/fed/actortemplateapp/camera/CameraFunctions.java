@@ -22,13 +22,13 @@ import java.io.IOException;
  */
 
 public class CameraFunctions {
-
+    //permissions zijn nodig voor het opslaan van foto's en het ophalen van foto's uit de gallerij
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
-
+    //convert een drawable (vanuit een imageview) naar een string zodat het in de db kan worden opgeslagen
     public String fromImageToString(BitmapDrawable personPhoto){
         Bitmap photoBitmap = personPhoto.getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -37,14 +37,13 @@ public class CameraFunctions {
         String encodedImage = Base64.encodeToString(photoByteFormat, Base64.NO_WRAP);
         return encodedImage;
     }
-
+    //convert de string (vanuit de db) naar een bitmap zodat deze in een imageview geplaatst kan worden
     public Bitmap fromStringToImage(String photo){
-
         byte[] decodedString = Base64.decode(photo, Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         return decodedByte;
     }
-
+    //als met de camera een foto is gemaakt, process deze en sla hem op in het device.
     public Bitmap processCapturedImage(Intent intentData){
         Bitmap processedImage = (Bitmap) intentData.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -64,7 +63,7 @@ public class CameraFunctions {
         }
         return processedImage;
     }
-
+    //verifeer of de app permissions heeft om bestanden te lezen en op te slaan
     public static void verifyStoragePermissions(Activity activity) {
         // Check if we have write permission
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);

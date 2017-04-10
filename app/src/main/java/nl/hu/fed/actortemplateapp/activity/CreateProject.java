@@ -49,7 +49,7 @@ public class CreateProject extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.saveItem) {
-            if(TextUtils.isEmpty(titleET.getText().toString())) {
+            if(TextUtils.isEmpty(titleET.getText().toString())) { //valideer projectnaam
                 Toast.makeText(this, this.getString(R.string.emptyProjectName), Toast.LENGTH_SHORT).show();
             }
             else {

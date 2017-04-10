@@ -14,13 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import nl.hu.fed.actortemplateapp.R;
 import android.widget.Toast;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.adapters.ActorsAdapter;
 import nl.hu.fed.actortemplateapp.domain.Project;
 
@@ -73,7 +75,7 @@ public class ShowProjectContent extends AppCompatActivity {
                         descriptionET.setText(content);
 
                         analyst = project.getAnalyst();
-
+                        //als user niet de analist is, niet de optie tonen om een actor toe te voegen
                         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
                         if(!analyst.equals(userInfo.getString("userId", "NotSignedIn"))) {
                             titleET.setKeyListener(null);
@@ -89,7 +91,6 @@ public class ShowProjectContent extends AppCompatActivity {
 
         //add a OnItemClickListener
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_actors);
-
         mAdapter = new ActorsAdapter(key, helloTest);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -117,7 +118,7 @@ public class ShowProjectContent extends AppCompatActivity {
                 EditText titleET = (EditText) findViewById(R.id.titleView);
                 EditText descriptionET = (EditText) findViewById(R.id.descriptionView);
 
-                if(!TextUtils.isEmpty(titleET.getText().toString())) {
+                if(!TextUtils.isEmpty(titleET.getText().toString())) { //valideer op projectnaam
                     mDatabase.child("projects").child(key).child("title").setValue(titleET.getText().toString());
                     mDatabase.child("projects").child(key).child("description").setValue(descriptionET.getText().toString());
                     finish();

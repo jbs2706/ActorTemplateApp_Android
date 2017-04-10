@@ -2,8 +2,8 @@ package nl.hu.fed.actortemplateapp.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -47,8 +47,8 @@ public class ShowActorContent extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(ShowActorContent.this, CreatePerson.class);
                 i.putExtra("key", key);
-                i.putExtra("project", projectName);
-                i.putExtra("actor", actorName);
+                i.putExtra("project", projectName); //worden in scherm getoond
+                i.putExtra("actor", actorName); //worden in scherm getoond
                 startActivity(i);
             }
         });
@@ -121,7 +121,7 @@ public class ShowActorContent extends AppCompatActivity {
                 EditText rolenameET = (EditText) findViewById(R.id.rolenameView);
                 EditText taskdescriptionET = (EditText) findViewById(R.id.taskdescriptionView);
 
-                if(!TextUtils.isEmpty(rolenameET.getText().toString())) {
+                if(!TextUtils.isEmpty(rolenameET.getText().toString())) { //valideer rolename
                     mDatabase.child("actors").child(key).child("rolename").setValue(rolenameET.getText().toString());
                     mDatabase.child("actors").child(key).child("taskdescription").setValue(taskdescriptionET.getText().toString());
                     finish();

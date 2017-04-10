@@ -23,7 +23,7 @@
             android:required="true" />
 
         <activity
-            android:name=".activity.ShowProjects"
+            android:name=".activity.ShowAllProjects"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
@@ -39,21 +39,21 @@
         <activity
             android:name=".activity.ShowProjectContent"
             android:label="Project detail"
-            android:parentActivityName=".activity.ShowProjects"
+            android:parentActivityName=".activity.ShowAllProjects"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nl.hu.fed.actortemplateapp.activity.ShowProjects" />
+                android:value="nl.hu.fed.actortemplateapp.activity.ShowAllProjects" />
         </activity>
 
         <activity
             android:name=".activity.CreateProject"
             android:label="New Project"
-            android:parentActivityName=".activity.ShowProjects"
+            android:parentActivityName=".activity.ShowAllProjects"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nl.hu.fed.actortemplateapp.activity.ShowProjects" />
+                android:value="nl.hu.fed.actortemplateapp.activity.ShowAllProjects" />
         </activity>
 
         <activity
@@ -104,20 +104,20 @@
         <activity
             android:name=".activity.MyAccount"
             android:label="My Account"
-            android:parentActivityName=".activity.ShowProjects"
+            android:parentActivityName=".activity.ShowAllProjects"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nl.hu.fed.actortemplateapp.activity.ShowProjects" />
+                android:value="nl.hu.fed.actortemplateapp.activity.ShowAllProjects" />
         </activity>
 
         <activity android:name=".activity.Archive"
             android:label="Archive"
-            android:parentActivityName=".activity.ShowProjects"
+            android:parentActivityName=".activity.ShowAllProjects"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nl.hu.fed.actortemplateapp.activity.ShowProjects" />
+                android:value="nl.hu.fed.actortemplateapp.activity.ShowAllProjects" />
         </activity>
     </application>
 
