@@ -39,4 +39,15 @@
     <string name="useremail">Email</string>
     <string name="username">Username</string>
     <string name="userrole">Userrol</string>
+    <string name="actorContentProject">Project:</string>
+    <string name="hintActorDescription">Enter description</string>
+    <string name="hintActorRoleName">Enter rolename</string>
+    <string name="manifestArchive">Archive</string>
+    <string name="manifestCreateActor">New Actor</string>
+    <string name="manifestCreatePerson">New Person</string>
+    <string name="manifestCreateProject">New Project</string>
+    <string name="manifestMyAccount">My Account</string>
+    <string name="manifestShowActorContent">Actor detail</string>
+    <string name="manifestShowPersonContent">Person detail</string>
+    <string name="manifestShowProjectContent">Project detail</string>
 </resources>

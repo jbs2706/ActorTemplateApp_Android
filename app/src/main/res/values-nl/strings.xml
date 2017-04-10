@@ -39,4 +39,15 @@
     <string name="useremail">Email</string>
     <string name="username">Gebruikersnaam</string>
     <string name="userrole">Gebruikersrol</string>
+    <string name="actorContentProject">Project:</string>
+    <string name="hintActorDescription">Vul beschrijving in</string>
+    <string name="hintActorRoleName">Vul de actor rol in</string>
+    <string name="manifestArchive">Archief</string>
+    <string name="manifestCreateActor">Nieuwe actor</string>
+    <string name="manifestCreatePerson">Nieuw persoon</string>
+    <string name="manifestCreateProject">Nieuw project</string>
+    <string name="manifestMyAccount">Mijn account</string>
+    <string name="manifestShowActorContent">Actor detail</string>
+    <string name="manifestShowPersonContent">Persoon detail</string>
+    <string name="manifestShowProjectContent">Project detail</string>
 </resources>
