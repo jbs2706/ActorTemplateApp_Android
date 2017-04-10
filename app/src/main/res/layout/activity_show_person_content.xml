@@ -24,7 +24,6 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/show_person_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/activity_vertical_margin"
@@ -38,37 +37,37 @@
         android:focusableInTouchMode="true" >
 
         <ImageView
-            android:id="@+id/photoView"
+            android:id="@+id/aShowPersonContent_photoIv"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_alignLeft="@+id/nameView"
-            android:layout_below="@+id/nameView"
+            android:layout_alignLeft="@+id/aShowPersonContent_nameEt"
+            android:layout_below="@+id/aShowPersonContent_nameEt"
             android:layout_margin="10dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/emailView"
-            android:layout_toRightOf="@id/photoView"
-            android:layout_alignTop="@id/photoView" />
+            android:id="@+id/aShowPersonContent_emailEt"
+            android:layout_toRightOf="@id/aShowPersonContent_photoIv"
+            android:layout_alignTop="@id/aShowPersonContent_photoIv" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/functionView"
-            android:layout_below="@id/emailView"
-            android:layout_alignLeft="@id/emailView"
+            android:id="@+id/aShowPersonContent_functionEt"
+            android:layout_below="@id/aShowPersonContent_emailEt"
+            android:layout_alignLeft="@id/aShowPersonContent_emailEt"
             android:layout_marginTop="5dp" />
 
         <ImageButton
             android:layout_width="45dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/functionView"
-            android:layout_alignLeft="@id/functionView"
+            android:layout_below="@id/aShowPersonContent_functionEt"
+            android:layout_alignLeft="@id/aShowPersonContent_functionEt"
             app:srcCompat="@drawable/phone"
             android:layout_marginTop="15dp"
-            android:id="@+id/imageButtonPhone"
+            android:id="@+id/aShowPersonContent_phoneIb"
             android:layout_height="45dp" />
 
         <EditText
@@ -76,23 +75,23 @@
             android:layout_height="wrap_content"
             android:inputType="phone"
             android:ems="10"
-            android:id="@+id/phonenumberView"
-            android:layout_below="@id/functionView"
-            android:layout_toRightOf="@id/imageButtonPhone"
+            android:id="@+id/aShowPersonContent_phonenumberEt"
+            android:layout_below="@id/aShowPersonContent_functionEt"
+            android:layout_toRightOf="@id/aShowPersonContent_phoneIb"
             android:layout_marginTop="15dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/notesView"
+            android:id="@+id/aShowPersonContent_notesEt"
             tools:lines="5"
-            android:layout_below="@id/phonenumberView"
+            android:layout_below="@id/aShowPersonContent_phonenumberEt"
             android:layout_marginTop="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewPersonProjectActor"
+            android:id="@+id/aShowPersonContent_projectActorTv"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -101,14 +100,14 @@
             android:layout_width="fill_parent"
             android:layout_height="2dp"
             android:background="#c0c0c0"
-            android:layout_below="@id/textViewPersonProjectActor"/>
+            android:layout_below="@id/aShowPersonContent_projectActorTv"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/nameView"
+            android:id="@+id/aShowPersonContent_nameEt"
             android:textStyle="bold|italic"
-            android:layout_below="@+id/textViewPersonProjectActor"
+            android:layout_below="@+id/aShowPersonContent_projectActorTv"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 

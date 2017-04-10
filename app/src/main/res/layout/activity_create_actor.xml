@@ -31,16 +31,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewCreateActorProject" />
+            android:id="@+id/aCreateActor_projectTv" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dp"
             android:background="#c0c0c0"
-            android:layout_below="@id/textViewCreateActorProject"/>
+            android:layout_below="@id/aCreateActor_projectTv"/>
 
         <TextView android:text="@string/actorRoleName"
-            android:id="@+id/textViewRoleName"
+            android:id="@+id/aCreateActor_roleNameTv"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             >
@@ -48,18 +48,18 @@
         <EditText
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:id="@+id/editTextRoleName"
+            android:id="@+id/aCreateActor_roleNameEt"
             android:hint="@string/hintActorRoleName">
         </EditText>
 
         <TextView
             android:text="@string/actorDescription"
-            android:id="@+id/textViewDescription"
+            android:id="@+id/aCreateActor_descriptionTv"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
         </TextView>
         <EditText
-            android:id="@+id/editTextDescriptionActor"
+            android:id="@+id/aCreateActor_descriptionEt"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:gravity="top"

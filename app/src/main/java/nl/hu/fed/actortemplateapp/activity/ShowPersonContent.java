@@ -49,13 +49,13 @@ public class ShowPersonContent extends AppCompatActivity {
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        EditText nameField = (EditText)findViewById(R.id.nameView);
-                        EditText emailField = (EditText) findViewById(R.id.emailView);
-                        EditText functionField = (EditText) findViewById(R.id.functionView);
-                        EditText phonenumberField = (EditText) findViewById(R.id.phonenumberView);
-                        EditText notesField = (EditText) findViewById(R.id.notesView);
-                        ImageView photoField = (ImageView) findViewById(R.id.photoView);
-                        TextView projectAndActorTV = (TextView) findViewById(R.id.textViewPersonProjectActor);
+                        EditText nameField = (EditText)findViewById(R.id.aShowPersonContent_nameEt);
+                        EditText emailField = (EditText) findViewById(R.id.aShowPersonContent_emailEt);
+                        EditText functionField = (EditText) findViewById(R.id.aShowPersonContent_functionEt);
+                        EditText phonenumberField = (EditText) findViewById(R.id.aShowPersonContent_phonenumberEt);
+                        EditText notesField = (EditText) findViewById(R.id.aShowPersonContent_notesEt);
+                        ImageView photoField = (ImageView) findViewById(R.id.aShowPersonContent_photoIv);
+                        TextView projectAndActorTV = (TextView) findViewById(R.id.aShowPersonContent_projectActorTv);
 
                         Person person = dataSnapshot.getValue(Person.class);
 
@@ -98,12 +98,12 @@ public class ShowPersonContent extends AppCompatActivity {
     }
 
     public void addListenerOnImageButton() {
-        ImageButton imageButtonPhone = (ImageButton) findViewById(R.id.imageButtonPhone);
+        ImageButton imageButtonPhone = (ImageButton) findViewById(R.id.aShowPersonContent_phoneIb);
 
         imageButtonPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                EditText phonenumberField = (EditText) findViewById(R.id.phonenumberView);
+                EditText phonenumberField = (EditText) findViewById(R.id.aShowPersonContent_phonenumberEt);
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phonenumberField.getText().toString()));
                 startActivity(intent);
             }
@@ -127,12 +127,12 @@ public class ShowPersonContent extends AppCompatActivity {
         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
         if(analyst.equals(userInfo.getString("userId", "NotSignedIn"))) {
             if (id == R.id.editItem) {
-                EditText nameField = (EditText) findViewById(R.id.nameView);
-                EditText emailField = (EditText) findViewById(R.id.emailView);
-                EditText functionField = (EditText) findViewById(R.id.functionView);
-                EditText phonenumberField = (EditText) findViewById(R.id.phonenumberView);
-                EditText notesField = (EditText) findViewById(R.id.notesView);
-                ImageView photoField = (ImageView) findViewById(R.id.photoView);
+                EditText nameField = (EditText) findViewById(R.id.aShowPersonContent_nameEt);
+                EditText emailField = (EditText) findViewById(R.id.aShowPersonContent_emailEt);
+                EditText functionField = (EditText) findViewById(R.id.aShowPersonContent_functionEt);
+                EditText phonenumberField = (EditText) findViewById(R.id.aShowPersonContent_phonenumberEt);
+                EditText notesField = (EditText) findViewById(R.id.aShowPersonContent_notesEt);
+                ImageView photoField = (ImageView) findViewById(R.id.aShowPersonContent_photoIv);
 
                 if(TextUtils.isEmpty(nameField.getText().toString())) { //valideer naam
                     Toast.makeText(this, this.getString(R.string.emptyPersonName), Toast.LENGTH_SHORT).show();

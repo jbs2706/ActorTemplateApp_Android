@@ -6,17 +6,17 @@
     android:padding="6dip">
     <TextView
         android:layout_width="wrap_content"
-        android:id="@+id/archiveActorRolename"
+        android:id="@+id/rowArchivedActor_rolename"
         android:textSize="16dip"
         android:textStyle="bold"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:id="@+id/archiveActorDescription"
+        android:id="@+id/rowArchivedActor_description"
         android:layout_height="wrap_content"
         android:textSize="14dip"
-        android:layout_below="@+id/archiveActorRolename"
+        android:layout_below="@+id/rowArchivedActor_rolename"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 

@@ -32,9 +32,9 @@ public class ArchivedPersonsAdapter extends FirebaseRecyclerAdapter<Person, Arch
 
         public MyViewHolder(View view) {
             super(view);
-            name = (TextView) view.findViewById(R.id.archivePersonName);
-            email = (TextView) view.findViewById(R.id.archivePersonEmail);
-            function = (TextView) view.findViewById(R.id.archivePersonFunction);
+            name = (TextView) view.findViewById(R.id.rowArchivedPerson_name);
+            email = (TextView) view.findViewById(R.id.rowArchivedPerson_email);
+            function = (TextView) view.findViewById(R.id.rowArchivedPerson_function);
         }
 
     }

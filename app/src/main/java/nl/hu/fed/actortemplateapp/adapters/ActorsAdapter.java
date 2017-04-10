@@ -44,8 +44,8 @@ public class ActorsAdapter extends FirebaseRecyclerAdapter<Actor, ActorsAdapter.
 
         public MyViewHolder(View view) {
             super(view);
-            rolename = (TextView) view.findViewById(R.id.rolename);
-            description = (TextView) view.findViewById(R.id.descriptionActor);
+            rolename = (TextView) view.findViewById(R.id.rowActor_rolename);
+            description = (TextView) view.findViewById(R.id.rowActor_description);
             view.setOnClickListener(this);
         }
 

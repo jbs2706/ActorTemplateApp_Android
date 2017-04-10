@@ -49,9 +49,9 @@ public class MyAccount extends AppCompatActivity implements GoogleApiClient.OnCo
 
         photoUrl = mFirebaseUser.getPhotoUrl().toString();
 
-        final TextView nameField = (TextView)findViewById(R.id.accountUsername);
-        final TextView emailField = (TextView) findViewById(R.id.accountEmail);
-        final TextView roleField = (TextView) findViewById(R.id.accountRole);
+        final TextView nameField = (TextView)findViewById(R.id.aMyAccount_usernameTv);
+        final TextView emailField = (TextView) findViewById(R.id.aMyAccount_emailTv);
+        final TextView roleField = (TextView) findViewById(R.id.aMyAccount_roleTv);
 
         //get user data
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
@@ -69,7 +69,7 @@ public class MyAccount extends AppCompatActivity implements GoogleApiClient.OnCo
             }
         });
         //haal de google account foto op
-        new DownloadImageTask((ImageView) findViewById(R.id.accountImage))
+        new DownloadImageTask((ImageView) findViewById(R.id.aMyAccount_photoIv))
                 .execute(photoUrl);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -77,7 +77,7 @@ public class MyAccount extends AppCompatActivity implements GoogleApiClient.OnCo
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
 
-        final Button signOut = (Button) findViewById(R.id.button_sign_out_myaccount);
+        final Button signOut = (Button) findViewById(R.id.aMyAccount_signOutB);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

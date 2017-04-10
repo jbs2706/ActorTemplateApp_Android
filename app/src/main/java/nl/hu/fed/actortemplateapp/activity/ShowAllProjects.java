@@ -29,7 +29,7 @@ public class ShowAllProjects extends BaseActivity {
 
         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.aAllProjects_NewProjectFab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,7 +41,7 @@ public class ShowAllProjects extends BaseActivity {
             }
         });
 
-		recyclerView = (RecyclerView) findViewById(R.id.recycler_view_projects);
+		recyclerView = (RecyclerView) findViewById(R.id.aAllProjects_allProjectsRv);
 		mAdapter = new ProjectsAdapter(userInfo.getString("userId", "NotSignedIn"));
 		RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
 		recyclerView.setLayoutManager(mLayoutManager);

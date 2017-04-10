@@ -30,12 +30,12 @@ public class CreateActor extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //crashed als op terug wordt gedrukt. Komt door key. //TODO dit
-        roleET = (EditText) findViewById(R.id.editTextRoleName);
-        descriptionET = (EditText) findViewById(R.id.editTextDescriptionActor);
+        roleET = (EditText) findViewById(R.id.aCreateActor_roleNameEt);
+        descriptionET = (EditText) findViewById(R.id.aCreateActor_descriptionEt);
 
         Intent intent = getIntent();
         String projectName = intent.getStringExtra("project"); //wordt bovenaan scherm getoond
-        TextView projectTV = (TextView) findViewById(R.id.textViewCreateActorProject);
+        TextView projectTV = (TextView) findViewById(R.id.aCreateActor_projectTv);
         projectTV.setText("Project: " + projectName);
     }
 

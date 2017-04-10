@@ -32,8 +32,8 @@ public class ArchivedProjectsAdapter extends FirebaseRecyclerAdapter<Project, Ar
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.archiveProjectTitle);
-            description = (TextView) view.findViewById(R.id.archiveProjectDescription);
+            title = (TextView) view.findViewById(R.id.rowArchivedProject_title);
+            description = (TextView) view.findViewById(R.id.rowArchivedProject_description);
         }
     }
 }

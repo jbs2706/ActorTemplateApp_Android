@@ -6,17 +6,17 @@
     android:padding="6dip">
     <TextView
         android:layout_width="match_parent"
-        android:id="@+id/archiveProjectTitle"
+        android:id="@+id/rowArchivedProject_title"
         android:textSize="24dip"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:layout_width="wrap_content"
-        android:id="@+id/archiveProjectDescription"
+        android:id="@+id/rowArchivedProject_description"
         android:layout_height="wrap_content"
         android:textSize="16dip"
-        android:layout_below="@id/archiveProjectTitle"
-        android:layout_alignLeft="@id/archiveProjectTitle"/>
+        android:layout_below="@id/rowArchivedProject_title"
+        android:layout_alignLeft="@id/rowArchivedProject_title"/>
 
     <View
         android:layout_width="fill_parent"

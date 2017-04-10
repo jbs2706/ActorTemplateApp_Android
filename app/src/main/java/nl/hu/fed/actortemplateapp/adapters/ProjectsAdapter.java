@@ -44,9 +44,9 @@ public class ProjectsAdapter extends FirebaseRecyclerAdapter<Project, ProjectsAd
 
         public MyViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            description = (TextView) view.findViewById(R.id.descriptionProject);
-            analyst = (ImageView) view.findViewById(R.id.analystProject);
+            title = (TextView) view.findViewById(R.id.rowProject_title);
+            description = (TextView) view.findViewById(R.id.rowProject_description);
+            analyst = (ImageView) view.findViewById(R.id.rowProject_analyst);
             view.setOnClickListener(this);
         }
 

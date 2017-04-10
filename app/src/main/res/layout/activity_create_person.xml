@@ -31,17 +31,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewCreatePersonActorProject" />
+            android:id="@+id/aCreatePerson_projectActorTv" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2dp"
             android:background="#c0c0c0"
-            android:layout_below="@id/textViewCreatePersonActorProject"/>
+            android:layout_below="@id/aCreatePerson_projectActorTv"/>
 
         <TextView
             android:text="@string/personPhoto"
-            android:id="@+id/textViewPhoto"
+            android:id="@+id/aCreatePerson_photoTv"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content" />
 
@@ -56,10 +56,10 @@
                 android:layout_height="32dp"
                 app:srcCompat="@drawable/gallery"
                 android:layout_margin="15dp"
-                android:id="@+id/imageGallery"/>
+                android:id="@+id/aCreatePerson_galleryIb"/>
 
             <ImageView
-                android:id="@+id/imageViewPhoto"
+                android:id="@+id/aCreatePerson_photoIv"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:src="@drawable/defaultpersonphoto"/>
@@ -69,48 +69,48 @@
                 android:layout_height="32dp"
                 app:srcCompat="@drawable/camera"
                 android:layout_margin="15dp"
-                android:id="@+id/imageCamera" />
+                android:id="@+id/aCreatePerson_cameraTv" />
 
         </LinearLayout>
 
         <TextView android:text="@string/personName"
-            android:id="@+id/textViewFullName"
+            android:id="@+id/aCreatePerson_nameTv"
             android:layout_height="wrap_content"
             android:layout_width="match_parent" />
 
         <EditText
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:id="@+id/editTextName"
+            android:id="@+id/aCreatePerson_nameEt"
             android:hint="@string/hintPersonName"/>
 
         <TextView
             android:text="@string/personEmail"
-            android:id="@+id/textViewEmail"
+            android:id="@+id/aCreatePerson_emailTv"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/aCreatePerson_emailEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hintPersonEmail"/>
 
         <TextView
             android:text="@string/personFunction"
-            android:id="@+id/textViewFunction"
+            android:id="@+id/aCreatePerson_functionTv"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
         <EditText
-            android:id="@+id/editTextFunction"
+            android:id="@+id/aCreatePerson_functionEt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hintPersonFunction"/>
 
         <TextView
             android:text="@string/personPhonenumber"
-            android:id="@+id/textViewPhonenumber"
+            android:id="@+id/aCreatePerson_phonenumberTv"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
@@ -121,13 +121,13 @@
             android:weightSum="1" >
 
             <ImageView
-                android:id="@+id/imageViewPhone"
+                android:id="@+id/aCreatePerson_phoneIv"
                 android:layout_width="25dp"
                 android:layout_height="35dp"
                 android:src="@drawable/phone"/>
 
             <EditText
-                android:id="@+id/editTextPhonenumber"
+                android:id="@+id/aCreatePerson_phonenumberEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
@@ -138,12 +138,12 @@
 
         <TextView
             android:text="@string/personNotes"
-            android:id="@+id/textViewNotes"
+            android:id="@+id/aCreatePerson_notesTv"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
         <EditText
-            android:id="@+id/editTextNotes"
+            android:id="@+id/aCreatePerson_notesEt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top"

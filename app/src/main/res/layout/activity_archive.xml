@@ -22,51 +22,50 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/relativeLayout">
+        android:layout_height="match_parent">
 
         <ViewFlipper
-            android:id="@+id/viewflipperArchive"
+            android:id="@+id/aArchive_archiveViewflipper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/tbShowProjectArchive"
-            android:layout_toStartOf="@+id/tbShowProjectArchive"
+            android:layout_toLeftOf="@+id/aArchive_showProjectArchiveTb"
+            android:layout_toStartOf="@+id/aArchive_showProjectArchiveTb"
             android:layout_marginTop="60dp">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvPersonArchive"
+                android:id="@+id/aArchive_personArchiveRv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_toLeftOf="@+id/tbShowProjectArchive"
-                android:layout_toStartOf="@+id/tbShowProjectArchive" />
+                android:layout_toLeftOf="@+id/aArchive_showProjectArchiveTb"
+                android:layout_toStartOf="@+id/aArchive_showProjectArchiveTb" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvProjectArchive"
+                android:id="@+id/aArchive_projectArchiveRv"
                 android:layout_width="match_parent"
                 android:layout_height="451dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/tbShowProjectArchive"
-                android:layout_toStartOf="@+id/tbShowProjectArchive" />
+                android:layout_toLeftOf="@+id/aArchive_showProjectArchiveTb"
+                android:layout_toStartOf="@+id/aArchive_showProjectArchiveTb" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvActorArchive"
+                android:id="@+id/aArchive_actorArchiveRv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
-                android:layout_toLeftOf="@+id/tbShowProjectArchive"
-                android:layout_toStartOf="@+id/tbShowProjectArchive" />
+                android:layout_toLeftOf="@+id/aArchive_showProjectArchiveTb"
+                android:layout_toStartOf="@+id/aArchive_showProjectArchiveTb" />
 
         </ViewFlipper>
 
         <ToggleButton
-            android:id="@+id/tbShowPersonArchive"
+            android:id="@+id/aArchive_showPersonArchiveTb"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:checked="false"
@@ -79,20 +78,20 @@
             android:layout_marginBottom="221dp" />
 
         <ToggleButton
-            android:id="@+id/tbShowActorArchive"
+            android:id="@+id/aArchive_showActorArchiveTb"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:checked="false"
             android:text="@string/archiveButtonActors"
             android:textOff="@string/archiveButtonActors"
             android:textOn="@string/archiveButtonActors"
-            android:layout_above="@+id/tbShowPersonArchive"
+            android:layout_above="@+id/aArchive_showPersonArchiveTb"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="10dp" />
 
         <ToggleButton
-            android:id="@+id/tbShowProjectArchive"
+            android:id="@+id/aArchive_showProjectArchiveTb"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:text="@string/archiveButtonProjects"
@@ -100,7 +99,7 @@
             android:textOn="@string/archiveButtonProjects"
             android:checked="true"
             android:layout_marginBottom="10dp"
-            android:layout_above="@+id/tbShowActorArchive"
+            android:layout_above="@+id/aArchive_showActorArchiveTb"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
@@ -112,7 +111,7 @@
         android:clickable="true"
         app:fabSize="normal"
         app:srcCompat="@android:drawable/ic_menu_delete"
-        android:id="@+id/archiveDeleteItem"
+        android:id="@+id/aArchive_deleteItemFab"
         app:layout_anchor="@+id/relativeLayout"
         app:layout_anchorGravity="bottom|right"
         android:layout_gravity="top|left" />
@@ -123,7 +122,7 @@
         android:clickable="true"
         app:fabSize="normal"
         app:srcCompat="@android:drawable/ic_menu_set_as"
-        android:id="@+id/archiveRestoreItem"
+        android:id="@+id/aArchive_restoreItemFab"
         app:layout_anchor="@+id/relativeLayout"
         app:layout_anchorGravity="bottom|center_horizontal"
         android:layout_gravity="top|right" />

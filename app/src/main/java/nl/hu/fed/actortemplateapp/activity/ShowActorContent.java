@@ -41,7 +41,7 @@ public class ShowActorContent extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final Button newPerson = (Button) findViewById(R.id.button_new_person);
+        final Button newPerson = (Button) findViewById(R.id.aShowActorContent_newPersonB);
         newPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,9 +62,9 @@ public class ShowActorContent extends AppCompatActivity {
 
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        EditText rolenameET = (EditText) findViewById(R.id.rolenameView);
-                        EditText taskdescriptionET = (EditText) findViewById(R.id.taskdescriptionView);
-                        TextView projectTV = (TextView) findViewById(R.id.textViewActorProject);
+                        EditText rolenameET = (EditText) findViewById(R.id.aShowActorContent_rolenameEt);
+                        EditText taskdescriptionET = (EditText) findViewById(R.id.aShowActorContent_descriptionEt);
+                        TextView projectTV = (TextView) findViewById(R.id.aShowActorContent_projectTv);
 
                         Actor actor = dataSnapshot.getValue(Actor.class);
 
@@ -91,7 +91,7 @@ public class ShowActorContent extends AppCompatActivity {
                 }
         );
         //add a OnItemClickListener
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_persons);
+        recyclerView = (RecyclerView) findViewById(R.id.aShowActorContent_personsRv);
 
         mAdapter = new PersonsAdapter(key, projectName, actorName);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -118,8 +118,8 @@ public class ShowActorContent extends AppCompatActivity {
         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
         if(analyst.equals(userInfo.getString("userId", "NotSignedIn"))) {
             if (id == R.id.editItem) {
-                EditText rolenameET = (EditText) findViewById(R.id.rolenameView);
-                EditText taskdescriptionET = (EditText) findViewById(R.id.taskdescriptionView);
+                EditText rolenameET = (EditText) findViewById(R.id.aShowActorContent_rolenameEt);
+                EditText taskdescriptionET = (EditText) findViewById(R.id.aShowActorContent_descriptionEt);
 
                 if(!TextUtils.isEmpty(rolenameET.getText().toString())) { //valideer rolename
                     mDatabase.child("actors").child(key).child("rolename").setValue(rolenameET.getText().toString());

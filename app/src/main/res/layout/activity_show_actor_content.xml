@@ -22,7 +22,6 @@
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
-        android:id="@+id/show_actor_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/activity_vertical_margin"
@@ -38,7 +37,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rolenameView"
+            android:id="@+id/aShowActorContent_rolenameEt"
             android:textStyle="bold|italic"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -48,28 +47,28 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/taskdescriptionView"
+            android:id="@+id/aShowActorContent_descriptionEt"
             tools:lines="4"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/rolenameView"
-            android:layout_alignLeft="@id/rolenameView"
+            android:layout_below="@id/aShowActorContent_rolenameEt"
+            android:layout_alignLeft="@id/aShowActorContent_rolenameEt"
             android:layout_marginTop="5dp" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_persons"
+            android:id="@+id/aShowActorContent_personsRv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/taskdescriptionView"
-            android:layout_above="@+id/button_new_person" />
+            android:layout_below="@+id/aShowActorContent_descriptionEt"
+            android:layout_above="@+id/aShowActorContent_newPersonB" />
 
         <Button
             android:text="@string/actorContentAddPerson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_new_person"
+            android:id="@+id/aShowActorContent_newPersonB"
             android:layout_marginBottom="26dp"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_alignParentBottom="true"
@@ -79,7 +78,7 @@
             android:text="@string/actorContentProject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewActorProject"
+            android:id="@+id/aShowActorContent_projectTv"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -88,7 +87,7 @@
             android:layout_width="fill_parent"
             android:layout_height="2dp"
             android:background="#c0c0c0"
-            android:layout_below="@id/textViewActorProject"/>
+            android:layout_below="@id/aShowActorContent_projectTv"/>
 
     </RelativeLayout>
 

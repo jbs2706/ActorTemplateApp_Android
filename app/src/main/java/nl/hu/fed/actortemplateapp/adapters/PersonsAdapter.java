@@ -53,11 +53,11 @@ public class PersonsAdapter extends FirebaseRecyclerAdapter<Person, PersonsAdapt
 
         public MyViewHolder(View view) {
             super(view);
-            name = (TextView) view.findViewById(R.id.name);
-            email = (TextView) view.findViewById(R.id.email);
-            function = (TextView) view.findViewById(R.id.function);
-            phonenumber = (TextView) view.findViewById(R.id.phonenumber);
-            photo = (ImageView) view.findViewById(R.id.photo);
+            name = (TextView) view.findViewById(R.id.rowPerson_name);
+            email = (TextView) view.findViewById(R.id.rowPerson_email);
+            function = (TextView) view.findViewById(R.id.rowPerson_function);
+            phonenumber = (TextView) view.findViewById(R.id.rowPerson_phonenumber);
+            photo = (ImageView) view.findViewById(R.id.rowPerson_photo);
             view.setOnClickListener(this);
         }
 

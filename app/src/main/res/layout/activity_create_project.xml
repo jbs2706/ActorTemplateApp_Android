@@ -29,24 +29,24 @@
         android:orientation="vertical" >
 
         <TextView android:text="@string/projectName"
-            android:id="@+id/textView1"
+            android:id="@+id/aCreateProject_titleTv"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
 
         <EditText
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:id="@+id/editTextTitle1"
+            android:id="@+id/aCreateProject_titleEt"
             android:hint="@string/hintProjectName"/>
 
         <TextView
             android:text="@string/projectDescription"
-            android:id="@+id/textView2"
+            android:id="@+id/aCreateProject_descriptionTv"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
 
         <EditText
-            android:id="@+id/editTextDescriptionProject"
+            android:id="@+id/aCreateProject_descriptionEt"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:gravity="top"

@@ -45,27 +45,27 @@ public class CreatePerson extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        nameET = (EditText) findViewById(R.id.editTextName);
-        emailET = (EditText) findViewById(R.id.editTextEmail);
-        functionET = (EditText) findViewById(R.id.editTextFunction);
-        phonenumberET = (EditText) findViewById(R.id.editTextPhonenumber);
-        notesET = (EditText) findViewById(R.id.editTextNotes);
-        photoIV = (ImageView) findViewById(R.id.imageViewPhoto);
+        nameET = (EditText) findViewById(R.id.aCreatePerson_nameEt);
+        emailET = (EditText) findViewById(R.id.aCreatePerson_emailEt);
+        functionET = (EditText) findViewById(R.id.aCreatePerson_functionEt);
+        phonenumberET = (EditText) findViewById(R.id.aCreatePerson_phonenumberEt);
+        notesET = (EditText) findViewById(R.id.aCreatePerson_notesEt);
+        photoIV = (ImageView) findViewById(R.id.aCreatePerson_photoIv);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         Intent intent = getIntent();
         String projectName = intent.getStringExtra("project"); //worden bovenaan scherm getoond
         String actorName = intent.getStringExtra("actor");
-        TextView projectAndActorTV = (TextView) findViewById(R.id.textViewCreatePersonActorProject);
+        TextView projectAndActorTV = (TextView) findViewById(R.id.aCreatePerson_projectActorTv);
         projectAndActorTV.setText("Project: " + projectName + " -  Actor: " + actorName);
 
         addListenerOnImageButtons(); //make imagebutton do something
     }
 
     public void addListenerOnImageButtons() {
-        imageButtonGallery = (ImageButton) findViewById(R.id.imageGallery);
-        imageButtonCamera = (ImageButton) findViewById(R.id.imageCamera);
+        imageButtonGallery = (ImageButton) findViewById(R.id.aCreatePerson_galleryIb);
+        imageButtonCamera = (ImageButton) findViewById(R.id.aCreatePerson_cameraTv);
         //open de gallery
         imageButtonGallery.setOnClickListener(new View.OnClickListener() {
             @Override
