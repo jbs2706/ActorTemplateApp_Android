@@ -32,8 +32,8 @@ public class ArchivedActorsAdapter extends FirebaseRecyclerAdapter<Actor, Archiv
 
         public MyViewHolder(View view) {
             super(view);
-            rolename = (TextView) view.findViewById(R.id.archiveActorRolename);
-            description = (TextView) view.findViewById(R.id.archiveActorDescription);
+            rolename = (TextView) view.findViewById(R.id.rowArchivedActor_rolename);
+            description = (TextView) view.findViewById(R.id.rowArchivedActor_description);
         }
 
     }

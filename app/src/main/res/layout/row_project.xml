@@ -7,26 +7,26 @@
     android:padding="6dip">
     <TextView
         android:layout_width="match_parent"
-        android:id="@+id/title"
+        android:id="@+id/rowProject_title"
         android:textSize="24dip"
         android:layout_height="wrap_content"/>
 
     <ImageView
         app:srcCompat="@drawable/analyst"
-        android:id="@+id/analystProject"
+        android:id="@+id/rowProject_analyst"
         android:layout_height="45dp"
         android:layout_width="45dp"
-        android:layout_below="@id/title"
-        android:layout_alignLeft="@id/title"
+        android:layout_below="@id/rowProject_title"
+        android:layout_alignLeft="@id/rowProject_title"
         android:layout_margin="10dp" />
 
-    <TextView android:text="Description"
+    <TextView
         android:layout_width="wrap_content"
-        android:id="@+id/descriptionProject"
+        android:id="@+id/rowProject_description"
         android:layout_height="wrap_content"
         android:textSize="16dip"
-        android:layout_toRightOf="@+id/analystProject"
-        android:layout_alignTop="@+id/analystProject" />
+        android:layout_toRightOf="@+id/rowProject_analyst"
+        android:layout_alignTop="@+id/rowProject_analyst" />
 
     <View
         android:layout_width="fill_parent"

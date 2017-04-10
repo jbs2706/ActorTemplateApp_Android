@@ -7,26 +7,26 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:id="@+id/archivePersonName"
+        android:id="@+id/rowArchivedPerson_name"
         android:textSize="16dip"
         android:textStyle="bold"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:layout_width="match_parent"
-        android:id="@+id/archivePersonEmail"
+        android:id="@+id/rowArchivedPerson_email"
         android:layout_height="wrap_content"
         android:textSize="14dip"
-        android:layout_below="@+id/archivePersonName"
-        android:layout_alignLeft="@id/archivePersonName"/>
+        android:layout_below="@+id/rowArchivedPerson_name"
+        android:layout_alignLeft="@id/rowArchivedPerson_name"/>
 
     <TextView
         android:layout_width="match_parent"
-        android:id="@+id/archivePersonFunction"
+        android:id="@+id/rowArchivedPerson_function"
         android:layout_height="wrap_content"
         android:textSize="14dip"
-        android:layout_below="@+id/archivePersonEmail"
-        android:layout_alignLeft="@+id/archivePersonEmail"/>
+        android:layout_below="@+id/rowArchivedPerson_email"
+        android:layout_alignLeft="@+id/rowArchivedPerson_email"/>
 
     <View
         android:layout_width="fill_parent"
