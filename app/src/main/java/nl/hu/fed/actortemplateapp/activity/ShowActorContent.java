@@ -3,6 +3,7 @@ package nl.hu.fed.actortemplateapp.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,6 +41,7 @@ public class ShowActorContent extends AppCompatActivity {
         setContentView(R.layout.activity_show_actor_content);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Button newPerson = (Button) findViewById(R.id.aShowActorContent_newPersonB);
         newPerson.setOnClickListener(new View.OnClickListener() {
@@ -84,20 +86,19 @@ public class ShowActorContent extends AppCompatActivity {
                             taskdescriptionET.setKeyListener(null);
                             newPerson.setVisibility(View.INVISIBLE);
                         }
+
+                        recyclerView = (RecyclerView) findViewById(R.id.aShowActorContent_personsRv);
+                        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        recyclerView.setLayoutManager(mLayoutManager);
+                        recyclerView.setItemAnimator(new DefaultItemAnimator());
+                        mAdapter = new PersonsAdapter(key, projectName, actorName);
+                        recyclerView.setAdapter(mAdapter);
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {}
                 }
         );
-        //add a OnItemClickListener
-        recyclerView = (RecyclerView) findViewById(R.id.aShowActorContent_personsRv);
-
-        mAdapter = new PersonsAdapter(key, projectName, actorName);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
     }
 
 
@@ -137,7 +138,12 @@ public class ShowActorContent extends AppCompatActivity {
                 mDatabase.child("actors").child(key).removeValue();
                 finish();
             }
-        } else{
+        }
+        else if(id == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        }
+        else {
             Toast.makeText(this, this.getString(R.string.analystAction), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);

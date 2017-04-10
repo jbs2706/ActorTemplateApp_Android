@@ -29,7 +29,7 @@ public class CreateActor extends AppCompatActivity {
         setContentView(R.layout.activity_create_actor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true); //crashed als op terug wordt gedrukt. Komt door key. //TODO dit
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         roleET = (EditText) findViewById(R.id.aCreateActor_roleNameEt);
         descriptionET = (EditText) findViewById(R.id.aCreateActor_descriptionEt);
 

@@ -76,7 +76,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="221dp"
-            android:layout_width="100dp" />
+            android:layout_width="105dp" />
 
         <ToggleButton
             android:id="@+id/aArchive_showActorArchiveTb"
@@ -89,7 +89,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="10dp"
-            android:layout_width="100dp" />
+            android:layout_width="105dp" />
 
         <ToggleButton
             android:id="@+id/aArchive_showProjectArchiveTb"
@@ -102,7 +102,7 @@
             android:layout_above="@+id/aArchive_showActorArchiveTb"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_width="100dp" />
+            android:layout_width="105dp" />
 
     </RelativeLayout>
 

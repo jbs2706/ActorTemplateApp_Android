@@ -44,6 +44,7 @@ public class CreatePerson extends AppCompatActivity {
         setContentView(R.layout.activity_create_person);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nameET = (EditText) findViewById(R.id.aCreatePerson_nameEt);
         emailET = (EditText) findViewById(R.id.aCreatePerson_emailEt);

@@ -30,9 +30,9 @@ public class Archive extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerViewProjectArchive = (RecyclerView) findViewById(R.id.aArchive_projectArchiveRv);
         archiveProjectsAdapter = new ArchivedProjectsAdapter();

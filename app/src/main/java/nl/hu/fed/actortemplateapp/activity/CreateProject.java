@@ -28,6 +28,7 @@ public class CreateProject extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         titleET = (EditText) findViewById(R.id.aCreateProject_titleEt);
         descriptionET = (EditText) findViewById(R.id.aCreateProject_descriptionEt);
         mDatabase =  FirebaseDatabase.getInstance().getReference();

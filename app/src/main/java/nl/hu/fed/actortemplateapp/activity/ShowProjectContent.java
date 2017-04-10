@@ -32,7 +32,6 @@ public class ShowProjectContent extends AppCompatActivity {
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private RecyclerView recyclerView;
     private ActorsAdapter mAdapter;
-    private String helloTest = "TESTPROJECT"; //TODO fix dit
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +68,6 @@ public class ShowProjectContent extends AppCompatActivity {
                         projectName = project.getTitle();
                         titleET.setText(projectName);
 
-                        helloTest = "WERKTHET";
-
                         String content = project.getDescription();
                         descriptionET.setText(content);
 
@@ -82,20 +79,19 @@ public class ShowProjectContent extends AppCompatActivity {
                             descriptionET.setKeyListener(null);
                             newActor.setVisibility(View.INVISIBLE);
                         }
+
+                        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_actors);
+                        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        recyclerView.setLayoutManager(mLayoutManager);
+                        recyclerView.setItemAnimator(new DefaultItemAnimator());
+                        mAdapter = new ActorsAdapter(key, projectName);
+                        recyclerView.setAdapter(mAdapter);
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {}
                 }
         );
-
-        //add a OnItemClickListener
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_actors);
-        mAdapter = new ActorsAdapter(key, helloTest);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(mAdapter);
     }
 
     @Override

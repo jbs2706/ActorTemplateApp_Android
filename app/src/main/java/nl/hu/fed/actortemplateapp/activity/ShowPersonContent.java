@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -39,6 +40,7 @@ public class ShowPersonContent extends AppCompatActivity {
         setContentView(R.layout.activity_show_person_content);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
@@ -58,26 +60,18 @@ public class ShowPersonContent extends AppCompatActivity {
                         TextView projectAndActorTV = (TextView) findViewById(R.id.aShowPersonContent_projectActorTv);
 
                         Person person = dataSnapshot.getValue(Person.class);
-
                         String name = person.getName();
                         nameField.setText(name);
-
                         String email = person.getEmail();
                         emailField.setText(email);
-
                         String function = person.getFunction();
                         functionField.setText(function);
-
                         String phonenumber = person.getPhonenumber();
                         phonenumberField.setText(phonenumber);
-
                         String notes = person.getNotes();
                         notesField.setText(notes);
-
                         photoField.setImageBitmap(cameraFunctions.fromStringToImage(person.getPhoto()));
-
                         projectAndActorTV.setText("Project: " + projectName + " -  Actor: " + actorName);
-
                         analyst = person.getAnalist();
 
                         SharedPreferences userInfo = getSharedPreferences("USERID", 0);
@@ -158,7 +152,12 @@ public class ShowPersonContent extends AppCompatActivity {
                 mDatabase.child("persons").child(key).removeValue();
                 finish();
             }
-        } else{
+        }
+        else if(id == android.R.id.home) {
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        }
+        else{
             Toast.makeText(this, this.getString(R.string.analystAction), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
