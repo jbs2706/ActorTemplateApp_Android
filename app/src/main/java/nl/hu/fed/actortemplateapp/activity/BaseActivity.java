@@ -23,19 +23,13 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
-
-    //private String mUsername;
-    //private String mPhotoUrl;
     private static final String TAG = "BaseActivity";
-
     public static final String ANONYMOUS = "anonymous";
     private GoogleApiClient mGoogleApiClient;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //mUsername = ANONYMOUS;
 
         // Initialize Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -46,10 +40,6 @@ public class BaseActivity extends AppCompatActivity implements GoogleApiClient.O
             finish();
             return;
         } else {
-            //mUsername = mFirebaseUser.getDisplayName();
-            if (mFirebaseUser.getPhotoUrl() != null) {
-                //mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
-            }
         }
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)

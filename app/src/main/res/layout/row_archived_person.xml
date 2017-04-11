@@ -3,6 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/background_lists"
     android:padding="6dip">
 
     <TextView
@@ -27,10 +28,5 @@
         android:textSize="14dip"
         android:layout_below="@+id/rowArchivedPerson_email"
         android:layout_alignLeft="@+id/rowArchivedPerson_email"/>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="#c0c0c0"/>
 
 </RelativeLayout>

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/background_lists"
     android:padding="6dip">
 
     <TextView
         android:layout_width="match_parent"
         android:id="@+id/rowPerson_name"
-        android:textSize="16dip"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.WindowTitle" />
 
     <ImageView
         android:layout_width="60dp"
@@ -27,29 +27,24 @@
         android:layout_width="match_parent"
         android:id="@+id/rowPerson_email"
         android:layout_height="wrap_content"
-        android:textSize="14dip"
         android:layout_alignTop="@+id/rowPerson_photo"
-        android:layout_toRightOf="@id/rowPerson_photo"/>
+        android:layout_toRightOf="@id/rowPerson_photo"
+        android:textAppearance="@android:style/TextAppearance.WindowTitle" />
 
     <TextView
         android:layout_width="match_parent"
         android:id="@+id/rowPerson_function"
         android:layout_height="wrap_content"
-        android:textSize="14dip"
         android:layout_below="@+id/rowPerson_email"
-        android:layout_alignLeft="@+id/rowPerson_email"/>
+        android:layout_alignLeft="@+id/rowPerson_email"
+        android:textAppearance="@android:style/TextAppearance.WindowTitle" />
 
     <TextView
         android:layout_width="match_parent"
         android:id="@+id/rowPerson_phonenumber"
         android:layout_height="wrap_content"
-        android:textSize="14dip"
         android:layout_below="@+id/rowPerson_function"
-        android:layout_alignLeft="@+id/rowPerson_function"/>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="#c0c0c0"/>
+        android:layout_alignLeft="@+id/rowPerson_function"
+        android:textAppearance="@android:style/TextAppearance.WindowTitle" />
 
 </RelativeLayout>

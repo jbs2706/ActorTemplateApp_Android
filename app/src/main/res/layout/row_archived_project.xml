@@ -3,6 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/background_lists"
     android:padding="6dip">
     <TextView
         android:layout_width="match_parent"
@@ -17,10 +18,5 @@
         android:textSize="16dip"
         android:layout_below="@id/rowArchivedProject_title"
         android:layout_alignLeft="@id/rowArchivedProject_title"/>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="#c0c0c0"/>
 
 </RelativeLayout>

@@ -49,27 +49,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="1" >
+            android:weightSum="3" >
 
-            <ImageButton
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                app:srcCompat="@drawable/gallery"
-                android:layout_margin="15dp"
-                android:id="@+id/aCreatePerson_galleryIb"/>
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:clickable="true"
+                app:fabSize="mini"
+                android:layout_margin="10dp"
+                app:srcCompat="@android:drawable/ic_menu_gallery"
+                android:id="@+id/aCreatePerson_galleryFab" />
 
             <ImageView
                 android:id="@+id/aCreatePerson_photoIv"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
-                android:src="@drawable/defaultpersonphoto"/>
+                android:src="@android:drawable/ic_menu_myplaces"
+                android:layout_margin="10dp"
+                app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
-            <ImageButton
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                app:srcCompat="@drawable/camera"
-                android:layout_margin="15dp"
-                android:id="@+id/aCreatePerson_cameraTv" />
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:clickable="true"
+                app:fabSize="mini"
+                android:layout_margin="10dp"
+                app:srcCompat="@android:drawable/ic_menu_camera"
+                android:id="@+id/aCreatePerson_cameraFab" />
 
         </LinearLayout>
 
@@ -124,7 +130,8 @@
                 android:id="@+id/aCreatePerson_phoneIv"
                 android:layout_width="25dp"
                 android:layout_height="35dp"
-                android:src="@drawable/phone"/>
+                android:src="@android:drawable/stat_sys_phone_call_forward"
+                app:srcCompat="@android:drawable/stat_sys_phone_call_forward" />
 
             <EditText
                 android:id="@+id/aCreatePerson_phonenumberEt"

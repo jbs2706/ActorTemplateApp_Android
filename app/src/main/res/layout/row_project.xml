@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="6dip">
+    android:background="@drawable/background_lists"
+    android:padding="4dip">
     <TextView
         android:layout_width="match_parent"
         android:id="@+id/rowProject_title"
-        android:textSize="24dip"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="projectnaam"
+        android:textAppearance="@android:style/TextAppearance.WindowTitle" />
 
     <ImageView
         app:srcCompat="@drawable/analyst"
@@ -24,13 +26,9 @@
         android:layout_width="wrap_content"
         android:id="@+id/rowProject_description"
         android:layout_height="wrap_content"
-        android:textSize="16dip"
         android:layout_toRightOf="@+id/rowProject_analyst"
-        android:layout_alignTop="@+id/rowProject_analyst" />
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="#c0c0c0"/>
+        android:layout_alignTop="@+id/rowProject_analyst"
+        android:text="projectomschrijving"
+        android:textAppearance="@android:style/TextAppearance.WindowTitle" />
 
 </RelativeLayout>

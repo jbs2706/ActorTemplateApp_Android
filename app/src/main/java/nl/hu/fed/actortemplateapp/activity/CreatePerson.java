@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +33,6 @@ public class CreatePerson extends AppCompatActivity {
     private EditText nameET, emailET, functionET, phonenumberET, notesET;
     private static final int SELECT_PHOTO = 100, TAKE_PHOTO = 200;
     private ImageView photoIV;
-    private ImageButton imageButtonCamera, imageButtonGallery;
     private CameraFunctions cameraFunctions = new CameraFunctions();
     private DatabaseReference mDatabase;
     private static final String TAG = "CreatePerson";
@@ -61,16 +60,10 @@ public class CreatePerson extends AppCompatActivity {
         TextView projectAndActorTV = (TextView) findViewById(R.id.aCreatePerson_projectActorTv);
         projectAndActorTV.setText("Project: " + projectName + " -  Actor: " + actorName);
 
-        addListenerOnImageButtons(); //make imagebutton do something
-    }
-
-    public void addListenerOnImageButtons() {
-        imageButtonGallery = (ImageButton) findViewById(R.id.aCreatePerson_galleryIb);
-        imageButtonCamera = (ImageButton) findViewById(R.id.aCreatePerson_cameraTv);
-        //open de gallery
-        imageButtonGallery.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton galleryFab = (FloatingActionButton) findViewById(R.id.aCreatePerson_galleryFab);
+        galleryFab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
+            public void onClick(View view) { //open de gallery
                 Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 getIntent.setType("image/*");
 
@@ -80,10 +73,11 @@ public class CreatePerson extends AppCompatActivity {
                 startActivityForResult(pickIntent, SELECT_PHOTO);
             }
         });
-        //open de camera
-        imageButtonCamera.setOnClickListener(new View.OnClickListener() {
+
+        FloatingActionButton cameraFab = (FloatingActionButton) findViewById(R.id.aCreatePerson_cameraFab);
+        cameraFab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
+            public void onClick(View view) { //open de camera
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(takePictureIntent, TAKE_PHOTO);
             }

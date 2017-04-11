@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/background_lists"
     android:padding="6dip">
+
+    <ImageView
+        app:srcCompat="@drawable/actor"
+        android:id="@+id/rowActor_actorIcon"
+        android:adjustViewBounds="false"
+        android:layout_centerVertical="true"
+        android:layout_height="35dp"
+        android:layout_width="35dp" />
     <TextView
         android:layout_width="wrap_content"
         android:id="@+id/rowActor_rolename"
-        android:textSize="16dip"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/rowActor_actorIcon"
+        android:textAppearance="@android:style/TextAppearance.WindowTitle" />
 
     <TextView
         android:layout_width="wrap_content"
         android:id="@+id/rowActor_description"
         android:layout_height="wrap_content"
-        android:textSize="14dip"
         android:layout_below="@+id/rowActor_rolename"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dp"
-        android:background="#c0c0c0"/>
+        android:layout_toRightOf="@id/rowActor_actorIcon"
+        android:textAppearance="@android:style/TextAppearance.WindowTitle" />
 
 </RelativeLayout>

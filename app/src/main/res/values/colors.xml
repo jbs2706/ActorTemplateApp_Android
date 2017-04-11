@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#164af9</color>
-    <color name="colorPrimaryDark">#b8101f</color>
+    <color name="colorPrimaryDark">#7210b8</color>
     <color name="colorAccent">#009094</color>
-    <color name="red">#ff0000</color>
-    <color name="green">#00ff00</color>
+    <color name="topbar">#ca006fff</color>
+    <color name="itemColor">#00abb8</color>
+    <color name="itemColor2">#ec7a4eb0</color>
 </resources>
