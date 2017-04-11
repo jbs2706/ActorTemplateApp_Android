@@ -28,8 +28,9 @@ import java.io.IOException;
 import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.camera.CameraFunctions;
 import nl.hu.fed.actortemplateapp.domain.Person;
+import nl.hu.fed.actortemplateapp.domain.Project;
 
-public class CreatePerson extends AppCompatActivity {
+public class CreatePerson extends BaseActivity {
     private EditText nameET, emailET, functionET, phonenumberET, notesET;
     private static final int SELECT_PHOTO = 100, TAKE_PHOTO = 200;
     private ImageView photoIV;
@@ -38,7 +39,7 @@ public class CreatePerson extends AppCompatActivity {
     private static final String TAG = "CreatePerson";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_person);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -82,6 +83,43 @@ public class CreatePerson extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, TAKE_PHOTO);
             }
         });
+
+        FloatingActionButton saveFab = (FloatingActionButton) findViewById(R.id.aCreatePerson_saveFab);
+        saveFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (TextUtils.isEmpty(nameET.getText().toString())) { //valideer naam
+                    Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.emptyPersonName), Toast.LENGTH_SHORT).show();
+                } //valideer email
+                else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emailET.getText().toString()).matches()) {
+                    Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.invalidEmail), Toast.LENGTH_SHORT).show();
+                } else {
+                    Person person = new Person();
+                    person.setName(nameET.getText().toString());
+                    person.setEmail(emailET.getText().toString());
+                    person.setFunction(functionET.getText().toString());
+                    person.setPhonenumber(phonenumberET.getText().toString());
+                    person.setNotes(notesET.getText().toString());
+
+                    if (photoIV.getDrawable() == null) { //als er geen foto genomen of geselecteerd is, standaard image gebruiken
+                        person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.defaultpersonphoto, null)));
+                    } else {
+                        person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) photoIV.getDrawable()));
+                    }
+
+                    Intent intent = getIntent();
+                    person.setActorKey(intent.getStringExtra("key"));
+
+                    SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+                    person.setAnalist(userInfo.getString("userId", "NotSignedIn"));
+
+                    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                    mDatabase.child("persons").push().setValue(person);
+
+                    finish();
+                }
+            }
+        });
     }
 
     @Override
@@ -102,57 +140,5 @@ public class CreatePerson extends AppCompatActivity {
             cameraFunctions.verifyStoragePermissions(this); //proces de genomen foto
             photoIV.setImageBitmap(cameraFunctions.processCapturedImage(intentData));
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.saveItem) {
-            if(TextUtils.isEmpty(nameET.getText().toString())) { //valideer naam
-                Toast.makeText(this, this.getString(R.string.emptyPersonName), Toast.LENGTH_SHORT).show();
-            } //valideer email
-            else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(emailET.getText().toString()).matches()) {
-                Toast.makeText(this, this.getString(R.string.invalidEmail), Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Person person = new Person();
-                person.setName(nameET.getText().toString());
-                person.setEmail(emailET.getText().toString());
-                person.setFunction(functionET.getText().toString());
-                person.setPhonenumber(phonenumberET.getText().toString());
-                person.setNotes(notesET.getText().toString());
-
-                if (photoIV.getDrawable() == null) { //als er geen foto genomen of geselecteerd is, standaard image gebruiken
-                    person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) ResourcesCompat.getDrawable(getResources(), R.drawable.defaultpersonphoto, null)));
-                } else {
-                    person.setPhoto(cameraFunctions.fromImageToString((BitmapDrawable) photoIV.getDrawable()));
-                }
-
-                Intent intent = getIntent();
-                person.setActorKey(intent.getStringExtra("key"));
-
-                SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-                person.setAnalist(userInfo.getString("userId", "NotSignedIn"));
-
-                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.child("persons").push().setValue(person);
-
-                finish();
-            }
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

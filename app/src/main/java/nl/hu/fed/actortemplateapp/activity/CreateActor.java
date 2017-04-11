@@ -3,11 +3,13 @@ package nl.hu.fed.actortemplateapp.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,14 +19,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import nl.hu.fed.actortemplateapp.R;
 import nl.hu.fed.actortemplateapp.domain.Actor;
+import nl.hu.fed.actortemplateapp.domain.Project;
 
-public class CreateActor extends AppCompatActivity {
+public class CreateActor extends BaseActivity {
     private EditText roleET, descriptionET;
     private DatabaseReference mDatabase;
     private static final String TAG = "CreateActor";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_actor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -37,41 +40,29 @@ public class CreateActor extends AppCompatActivity {
         String projectName = intent.getStringExtra("project"); //wordt bovenaan scherm getoond
         TextView projectTV = (TextView) findViewById(R.id.aCreateActor_projectTv);
         projectTV.setText("Project: " + projectName);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create, menu);
-        return true;
-    }
+        FloatingActionButton saveFab = (FloatingActionButton) findViewById(R.id.aCreateActor_saveFab);
+        saveFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(TextUtils.isEmpty(roleET.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.emptyActorName), Toast.LENGTH_SHORT).show();
+                }else {
+                    Actor actor = new Actor();
+                    actor.setRolename(roleET.getText().toString());
+                    actor.setTaskdescription(descriptionET.getText().toString());
+                    Intent intent = getIntent();
+                    actor.setProjectKey(intent.getStringExtra("key"));
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+                    SharedPreferences userInfo = getSharedPreferences("USERID", 0);
+                    actor.setAnalist(userInfo.getString("userId", "NotSignedIn"));
 
-        if (id == R.id.saveItem) { //valideer actornaam
-            if(TextUtils.isEmpty(roleET.getText().toString())) {
-                Toast.makeText(this, this.getString(R.string.emptyActorName), Toast.LENGTH_SHORT).show();
-            }else {
-                Actor actor = new Actor();
-                actor.setRolename(roleET.getText().toString());
-                actor.setTaskdescription(descriptionET.getText().toString());
-                Intent intent = getIntent();
-                actor.setProjectKey(intent.getStringExtra("key"));
+                    mDatabase = FirebaseDatabase.getInstance().getReference();
+                    mDatabase.child("actors").push().setValue(actor);
 
-                SharedPreferences userInfo = getSharedPreferences("USERID", 0);
-                actor.setAnalist(userInfo.getString("userId", "NotSignedIn"));
-
-                mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.child("actors").push().setValue(actor);
-
-                finish();
+                    finish();
+                }
             }
-        }
-        return super.onOptionsItemSelected(item);
+        });
     }
 }

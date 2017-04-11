@@ -26,7 +26,8 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:layout_marginTop="60dp"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
 
         <TextView android:text="@string/projectName"
             android:id="@+id/aCreateProject_titleTv"
@@ -54,5 +55,17 @@
             android:hint="@string/hintProjectDescription"/>
 
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/save"
+        android:id="@+id/aCreateProject_saveFab"
+        app:layout_anchor="@+id/linearLayout"
+        app:layout_anchorGravity="bottom|right"
+        android:layout_gravity="top|left"
+        app:backgroundTint="@android:color/holo_green_light" />
 
 </android.support.design.widget.CoordinatorLayout>
